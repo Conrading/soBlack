@@ -1,6 +1,6 @@
 const Provider = require("truffle-hdwallet-provider");
 const Web3 = require("web3");
-const { interface, bytecode } = require("../build/contracts/Math.json");
+const { interface, bytecode } = require("../build/contracts/test_ein");
 
 const provider = new Provider(
   "first time test",

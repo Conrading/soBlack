@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Conrading/ethermusik/issues"
   },
-  "homepage": "https://github.com/Conrading/ethermusik#readme"
+  "homepage": "https://github.com/Conrading/ethermusik#readme",
+  "dependencies": {
+    "truffle-hdwallet-provider": "^1.0.17"
+  }
 }
