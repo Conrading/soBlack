@@ -4,7 +4,7 @@ const { interface, bytecode } = require("../build/contracts/test_ein");
 
 const provider = new Provider(
   "first time test",
-  "https://ropsten.infura.io/v3/939b853c839c41299a21377f77b8e9da"
+  "https://"
 );
 
 const web3 = new Web3(provider);
