@@ -12,7 +12,7 @@
       @paused="paused"
       @buffering="buffering"
       @qued="qued"
-      :player-vars="{start: 14, autoplay: 1 }"
+      :player-vars="{start: 13, autoplay: 1 }"
     ></youtube></div>
       <div class="videoFrameRight" style="float:right;width:640px;height:500px;border:0px solid #000;">
     <youtube video-id="R0PD3tR-eHI"
