@@ -1,20 +1,24 @@
-# EtherMusik
+# ethermusik
 
-This is Smart Contract repo for Music business.
+## Project setup
+```
+npm install
+```
 
-## Run
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-to run this script, simply excute from terminal:
+### Compiles and minifies for production
+```
+npm run build
+```
 
-$ node migrateions/deploy.js 
+### Lints and fixes files
+```
+npm run lint
+```
 
-or
-
-$ truffle migrate
-
-
-## Module Install
-
-truffle, solidity
-
-
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
