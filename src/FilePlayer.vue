@@ -12,7 +12,7 @@
         </b-col>
         <b-col>
           <video id="videoPlayer02" ref="videoPlayer02" class="video-js vjs-default-skin vjs-16-9" controls autoplay preload="auto" data-setup="{}">
-            <source src="./components/video.02.mp4" type="video/mp4">
+            <!--source src="./components/video.02.mp4" type="video/mp4"-->
           </video>
         </b-col>
       </b-row>
@@ -52,6 +52,9 @@ Vue.use(BootstrapVueIcons)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import axios from 'axios'
+Vue.use(axios)
+
 //import PlayerParameter from './PlayerParameter'
 
 export default {
@@ -70,13 +73,13 @@ export default {
   methods: {
       generalPlay() {
       //fetching data from local JSON file
-      /*
+      
         axios.get('http://localhost:8080/fileListing.JSON').then((response) => {
           this.soun01Storage = response.data.sound01; 
           this.leftVideoStorage = response.data.video01;
           this.rightVideoStorage = response.data.video02;
           })
-      */
+      
         /*
         var state = this.parameterSetting.value;
 

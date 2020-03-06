@@ -5,8 +5,8 @@ import 'video.js/dist/video-js.css'
 import Video from 'video.js'
 import router from './router';
 
-//import axios from 'axios'
-//Vue.prototype.$axios = axios
+import axios from 'axios'
+Vue.prototype.$axios = axios
 
 Vue.prototype.$video = Video
 Vue.config.productionTip = false

@@ -107,8 +107,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 //import fs from 'fs'
-//import axios from 'axios'
-//Vue.use(axios)
+import axios from 'axios'
+Vue.use(axios)
 //import $ from 'jquery'
 
 
@@ -179,6 +179,12 @@ export default {
         document.getElementById("rightVideo").style.color = "green";
         document.getElementById("sound01").style.color = "red";
         //upload setting here
+        axios.post('http://localhost:8080/fileListing.JSON', 
+            [this.soun01Storage[0] = this.startTime,
+            this.soun01Storage[1] = this.soundVolume,
+            this.soun01Storage[2] = this.durationTime
+            ]
+          )
         this.soun01Storage[0] = this.startTime;
         this.soun01Storage[1] = this.soundVolume;
         this.soun01Storage[2] = this.durationTime; 
@@ -225,14 +231,13 @@ export default {
         //another option:
         //var videoDisplay01 = document.getElementById("videoPlayer01");
         //upload setting here
-      /*
         axios.post('http://localhost:8080/fileListing.JSON', 
             [this.leftVideoStorage[0] = this.startTime,
             this.leftVideoStorage[1] = this.soundVolume,
             this.leftVideoStorage[2] = this.durationTime
             ]
           )
-      */
+      
         //play video here, the {option} is necessary, otherwise currentTime is not readable
         videojs('videoPlayer01', {
         bigPlayButton: false,
@@ -276,6 +281,12 @@ export default {
         document.getElementById("sound01").style.color = "grey";
 
         let videoDisplay02 = this.$refs.videoPlayer02;
+        axios.post('http://localhost:8080/fileListing.JSON', 
+            [this.rightVideoStorage[0] = this.startTime,
+            this.rightVideoStorage[1] = this.soundVolume,
+            this.rightVideoStorage[2] = this.durationTime
+            ]
+          )
 
         videojs('videoPlayer02', {
         bigPlayButton: false,

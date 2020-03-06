@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: "/ethermusik",
+    publicPath: "/soblack",
     outputDir: "docs",
 
     chainWebpack: config => {

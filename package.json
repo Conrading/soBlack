@@ -1,5 +1,5 @@
 {
-  "name": "ndblack",
+  "name": "soblack",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "bootstrap-vue": "^2.5.0",
+    "bootstrap-vue": "^2.6.0",
     "core-js": "^3.4.4",
     "express": "^4.17.1",
     "file-system": "^2.2.2",
