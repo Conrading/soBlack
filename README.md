@@ -31,13 +31,29 @@ This code includes several parts:
 
 
 ### Customize configuration
+```
 $ npm install video.js
+```
+```
 $ npm install --save videojs-contrib-hls
+```
+```
 $ npm install bootstrap-vue
+```
+```
 $ npm install vue-upload-component
+```
+```
 $ npm install vue-router
+```
+```
 $ npm install web3
+```
+```
 $ npm install express
+```
+```
 $ npm install axios
+```
 
 
