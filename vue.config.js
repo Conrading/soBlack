@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: "/soblack",
+    publicPath: "/",
     outputDir: "docs",
 
     chainWebpack: config => {

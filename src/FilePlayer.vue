@@ -6,13 +6,24 @@
       <b-row class="justify-content-md-center">
         <b-col>
           <video id="videoPlayer01" ref="videoPlayer01" class="video-js vjs-default-skin vjs-16-9" controls autoplay preload="auto" data-setup="{}">
-            <!--source src="./components/video.01.mov" type="video/mov"-->
-            <!--we need to try to read from database-->
+            <source src="./storage/Drums_Beat.mp4" type="video/mp4">
           </video>   
         </b-col>
         <b-col>
           <video id="videoPlayer02" ref="videoPlayer02" class="video-js vjs-default-skin vjs-16-9" controls autoplay preload="auto" data-setup="{}">
-            <!--source src="./components/video.02.mp4" type="video/mp4"-->
+            <source src="./storage/star_war.mp4" type="video/mp4">
+          </video>
+        </b-col>
+      </b-row>
+      <b-row class="justify-content-md-center mt-2">
+        <b-col>
+          <video id="videoPlayer03" ref="videoPlayer03" class="video-js vjs-default-skin vjs-16-9" controls autoplay preload="auto" data-setup="{}">
+            <source src="./storage/rap.mp4" type="video/mp4">
+          </video>   
+        </b-col>
+        <b-col>
+          <video id="videoPlayer04" ref="videoPlayer04" class="video-js vjs-default-skin vjs-16-9" controls autoplay preload="auto" data-setup="{}">
+            <source src="./storage/deeplove.mp4" type="video/mp4">
           </video>
         </b-col>
       </b-row>
@@ -20,7 +31,7 @@
 
     <div class="soundRunner">
       <audio id="trackSound01" ref="trackSound01" controls autoplay preload="auto">
-        <source src="./components/sound01.mp3">
+        <!--source src="./components/sound01.mp3"-->
       </audio>
     </div>
     <!--control button /-->
@@ -51,10 +62,8 @@ Vue.use(BootstrapVue, BootstrapVueIcons)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import axios from 'axios'
-Vue.use(axios)
-
-//import PlayerParameter from './PlayerParameter'
+//import axios from 'axios'
+//Vue.use(axios)
 
 export default {
   name: 'just-player',
@@ -64,45 +73,35 @@ export default {
   data () {
     return {
         playStatus: null,
-        soun01Storage: [0, 0.5, 0],
-        leftVideoStorage: [0, 0, 0],
-        rightVideoStorage: [0, 0, 0], //startTime, soundVolume, durationTime
+        soun01Storage: [0, 0.5, 0],//startTime, soundVolume, durationTime
     }
   },
   methods: {
       generalPlay() {
-      //fetching data from local JSON file
-      
-        axios.get('http://localhost:8080/fileListing.JSON').then((response) => {
-          this.soun01Storage = response.data.sound01; 
-          this.leftVideoStorage = response.data.video01;
-          this.rightVideoStorage = response.data.video02;
-          })
-      
-        /*
-        var state = this.parameterSetting.value;
-
-        switch (state) {
-          case "on": this.parameterSetting = true; document.getElementById("sound01").style.color = "red"; break
-          case "off": this.parameterSetting = false; document.getElementById("sound01").style.color = "green";
-        }
-        */
         //playing sound
         var sound01Track = document.getElementById("trackSound01");
         sound01Track.play(sound01Track.currentTime = this.soun01Storage[0], sound01Track.volume = this.soun01Storage[1]);
         //somehow document.getElementById does not work for video here
         const videoDisplay01 = this.$refs.videoPlayer01;
         const videoDisplay02 = this.$refs.videoPlayer02;
-        videojs(videoDisplay01, {controlBar: true}, () => {videoDisplay01.currentTime = this.leftVideoStorage[0]}).play();
-        videojs(videoDisplay02, {controlBar: true}, () => {videoDisplay02.currentTime = this.rightVideoStorage[0]}).play();
+        const videoDisplay03 = this.$refs.videoPlayer03;
+        const videoDisplay04 = this.$refs.videoPlayer04;
+        videojs(videoDisplay01, {controlBar: true}, () => {videoDisplay01.currentTime = 5, videoDisplay01.volume = 0.2}).play();
+        videojs(videoDisplay02, {controlBar: true}, () => {videoDisplay02.currentTime = 0, videoDisplay02.volume = 0.1}).play();
+        videojs(videoDisplay03, {controlBar: true}, () => {videoDisplay03.currentTime = 10.5, videoDisplay03.volume = 0.3}).play();
+        videojs(videoDisplay04, {controlBar: true}, () => {videoDisplay04.currentTime = 3.7, videoDisplay04.volume = 0.3}).play();
         this.playStatus = "it is playing now";
       },
       stopPlay () {
         var sound01Track = document.getElementById("trackSound01");
         const videoDisplay01 = this.$refs.videoPlayer01;
         const videoDisplay02 = this.$refs.videoPlayer02;
+        const videoDisplay03 = this.$refs.videoPlayer03;
+        const videoDisplay04 = this.$refs.videoPlayer04;
         videojs(videoDisplay01).pause();
         videojs(videoDisplay02).pause();
+        videojs(videoDisplay03).pause();
+        videojs(videoDisplay04).pause();
         sound01Track.pause();
         this.playStatus = "stop as you request";
       },
