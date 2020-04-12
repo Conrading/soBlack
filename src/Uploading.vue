@@ -1,15 +1,38 @@
 <template>
   <div class="container">
     <div class="uploadingRunner">
-      <div>
-        <h5 class="mb-3">choose the file you want to replace</h5>
-        <b-button variant="outline-dark">Left Video</b-button>
-        <b-button variant="outline-dark">Right Video</b-button>
-        <b-button variant="outline-dark">First Sound</b-button>
-      </div>
+        <div>
+          <b-row align-h="center">  
+            <b-form-select v-model="selectedType" :options="typeOptions" class="mt-3"></b-form-select>
+            <div class="mt-3">File Format: <strong>{{ selectedType }}</strong></div>
+          </b-row>
+        </div>
 
       <h5 class="mt-3">Upload your File</h5>
-      <div class='upload'>
+      <div class="large-12 medium-12 small-12 cell">
+        <label>Files
+          <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload()"/>
+        </label>
+      </div>
+      <div class="large-12 medium-12 small-12 cell">
+        <div v-for="(file, key) in files" :key="file.name" class="file-listing">
+          {{ file.name }} 
+          <span class="remove-file" v-on:click="removeFile( key )">Remove</span>
+        </div>
+      </div>
+      <br>
+      <div>
+        <p><strong>talk to me {{ status }}</strong></p>
+      </div>
+      <br>
+      <div class="large-12 medium-12 small-12 cell">
+        <b-button v-on:click="addFiles()">Add Files</b-button>
+      </div>
+      <br>
+      <div class="large-12 medium-12 small-12 cell">
+        <b-button v-on:click="submitFiles()">Submit</b-button>
+      </div>
+      <!--div class='upload'>
         <ul>
           <li v-for="file in files" :key="file.id">
             <span>{{file.name}}</span>
@@ -46,31 +69,77 @@
             Stop Upload
           </b-button>
         </div>
-      </div>
+      </div-->
     </div>
   </div>
 </template>
 
 <script>
-import FileUpload from 'vue-upload-component'
+//import FileUpload from 'vue-upload-component'
 import Vue from 'vue'
 import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import axios from 'axios'
+Vue.use(axios)
 
 export default {
   name: 'Uploading',
-  components: {
-    FileUpload,
-  },
+  //components: {
+    //FileUpload,
+  //},
   data () {
     return {
       files: [],
+      typeOptions: [
+        { value: null, text: 'please select file format you upload'},
+        { value: 'video', text: 'video file format'},
+        { value: 'audio', text: 'audio file format'},
+        { value: 'image', text: 'image file format'},
+        { value: 'text', text: 'text file format'},
+      ],
+      selectedType: null,
+      status: null
     }
   },
   method: {
+    addFiles(){
+      this.status = "test";
+      //this.$refs.files.click();
+    },
+    submitFiles(){
+      let formData = new FormData();
+      for( var i = 0; i < this.files.length; i++ ){
+        let file = this.files[i];
+        formData.append('files[' + i + ']', file);
+        formData.append('filetype', this.selectedType);
+        formData.append('filetitle', file.name);
+        formData.append('location', './storage');
+      }
+
+      this.axios.post({
+        method: 'post',
+        url: 'api/information.php',
+        data: formData,
+        config: { headers: {'Content-Type': 'multipart/form-data'}}
+      }
+      ).then(() => {
+        this.resetAll();
+      })
+    },
+    handleFilesUpload() {
+      let uploadedFiles = this.$refs.files.files;
+      for(var i = 0; i < uploadedFiles.length; i++ ){
+        this.status = 'lets die together';
+        this.files.push( uploadedFiles[i] );
+      }
+    },
+    removeFile( key ) {
+      this.files.splice( key, 1 );
+    }
+    /*
     inputFilter(newFile, oldFile, prevent) {
       if (newFile && !oldFile) {
         // Before adding a file
@@ -98,6 +167,7 @@ export default {
         return('remove', oldFile)
       }
     }
+    */
   }
 }
 
@@ -111,5 +181,13 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;  
+}
+span.remove-file{
+  color: red;
+  cursor: pointer;
+  float: right;
+}
+div.file-listing{
+  width: 200px;
 }
 </style>
