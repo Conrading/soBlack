@@ -78,9 +78,11 @@ export default {
 
       this.axios.post({
         method: 'post',
-        url: 'api/information.php',
+        //url: 'api/information.php',
+        baseURL: "http://localhost:8080/api",
         data: formData,
-        config: { headers: {'Content-Type': 'multipart/form-data'}}
+        //config: { headers: {'Content-Type': 'multipart/form-data'}}
+        config: { headers: {'Content-Type': 'application/json'}}
       }
       ).then(() => {
         this.status = "Success !!"

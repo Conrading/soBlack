@@ -10,18 +10,22 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 
-const db = require('./app/config/db.config.sj');
+/*
+const db = require('./app/config/db.config.js');
 
 db.sequelize.sync({force: true}).then(() => {
     console.log('Drop and Resync with { force: true }');
 });
 
 require('./app/route/test.route.js')(app);
+*/
 
-var server = app.listen(8080, function () {
+//server creating
+
+var server = app.listen(8000, function () {
 
     var host = server.address().address
     var port = server.address().port
 
-    console.log("App listening at http://%s:%s", host, port)
+    console.log("App is listening at http://%s:%s", host, port)
 })
