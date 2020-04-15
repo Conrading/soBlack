@@ -123,9 +123,11 @@ $ npm install axios
 
 ## Backend required module
 ```
-
+$ npm install body-parser
+$ npm install cors
+$ npm install mysql2
+$ npm install sequelize
 $ npm install express
-$ npm install axios
 ```
 
 
