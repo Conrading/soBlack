@@ -27,10 +27,10 @@ $ npm run lnit
 ## Explanation
 
 * Frontend in `src` folder includes several parts:
-    using videojs to display video file, the start time can be adjusted depends on request;
-    sound file is merely playing via relevant html code, also start time and volume can be adjusted;
-    axios is the frame used here for storing/accessing data;
-    blockchain is the last part of the code, which adopting Etheruem;   
+    1. using `videojs` to display video file, the start time can be adjusted depends on request;
+    2. sound file is merely playing via relevant html code, also start time and volume can be adjusted;
+    3. `axios` is the frame used here for storing/accessing data;
+    4. `blockchain` is the last part of the code, which adopting Etheruem;   
 
 
 * Backend is mainly within [nodejs](./nodejs/README.md) folder
