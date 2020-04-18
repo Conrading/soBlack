@@ -25,7 +25,7 @@ More MySQL Command (Mandarin) [link](http://note.drx.tw/2012/12/mysql-syntax.htm
 
 ## explanation
 
-Backend is in folder [nodejs](https://grokonez.com/frontend/vue-js/vue-js-nodejs-express-restapis-sequelize-orm-mysql-crud-example)
+This folder [nodejs](https://grokonez.com/frontend/vue-js/vue-js-nodejs-express-restapis-sequelize-orm-mysql-crud-example) is main Backend
 
 1. DataBase is **MySQL**;
 2. DataBase name is **silex_test**, while the talbe name is **test**
@@ -35,7 +35,6 @@ More Nodejs Express Framework [link](https://www.tutorialspoint.com/nodejs/nodej
 
 
 
-Php file in api folder can be another option
 
 ## Backend required module
 ```
