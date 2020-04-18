@@ -6,22 +6,22 @@
 
 #### Project setup
 ``` node
-npm install
+$ npm install
 ```
 
 #### Compiles and hot-reloads for development
 ```
-npm run serve
+$ npm run serve
 ```
 
 #### Compiles and minifies for production
 ```
-npm run build
+$ npm run build
 ```
 
 #### Lints and fixes files
 ```
-npm run lnit
+$ npm run lnit
 ```
 
 ## Explanation
@@ -41,7 +41,7 @@ npm run lnit
 
 > Folder `participantContract` stores smart contract relevant files 
 
-### Play Syntax
+#### Play Syntax
 
 
 There are several options to **display video**, which can also refer to this [link]( https://docs.videojs.com/tutorial-player-workflows.html#dealing-with-the-source-or-the-poster-on-the-player)
