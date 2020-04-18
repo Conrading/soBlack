@@ -1,7 +1,7 @@
 const env = {
     database: 'silex_test',
     username: 'root',
-    password: 'KixQ117gN',
+    password: '',
     host: 'localhost',
     dialect: 'mysql',
     pool: {

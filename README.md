@@ -28,8 +28,6 @@ Frontend includes several parts:
 3. axios is the frame used here for storing/accessing data;
 4. blockchain is the last part of the code, which adopting Etheruem;   
 
-Backend is in folder 'nodejs':[link](https://grokonez.com/frontend/vue-js/vue-js-nodejs-express-restapis-sequelize-orm-mysql-crud-example)
-1.  
 
 ## Play Syntax
 
@@ -121,13 +119,5 @@ $ npm install web3
 $ npm install axios
 ```
 
-## Backend required module
-```
-$ npm install body-parser
-$ npm install cors
-$ npm install mysql2
-$ npm install sequelize
-$ npm install express
-```
 
 

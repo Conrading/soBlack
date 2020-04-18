@@ -10,16 +10,16 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 
-/*
 const db = require('./app/config/db.config.js');
 
 db.sequelize.sync({force: true}).then(() => {
     console.log('Drop and Resync with { force: true }');
 });
+//regarding sequelize.sync, please refer to https://stackoverflow.com/questions/21066755/how-does-sequelize-sync-work-specifically-the-force-option
 
+/*
 require('./app/route/test.route.js')(app);
 */
-
 //server creating
 
 var server = app.listen(8000, function () {
