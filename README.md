@@ -1,6 +1,6 @@
 # Ethereum test by Silex Oasis
 
-## Project setup
+### Project setup
 ```
 npm install
 ```
@@ -20,7 +20,7 @@ npm run build
 npm run lint
 ```
 
-## explanation
+## Explanation
 
 Frontend in **src** includes several parts:
 1. using videojs to display video file, the start time can be adjusted depends on request;
@@ -34,7 +34,7 @@ Php file in **api** folder can be alternative MySQL option
 
 Folder **participantContract** stores smart contract relevant files 
 
-## Play Syntax
+### Play Syntax
 
 
 There are several options to **display video**, which can also refer to this [link]( https://docs.videojs.com/tutorial-player-workflows.html#dealing-with-the-source-or-the-poster-on-the-player)
@@ -111,8 +111,6 @@ There are several options to **play sound**
         var soundTrack = document.getElementById("Sound");
         soundTrack.play(soundTrack.currentTime = 20, soundTrack.volume = 0.5);
     </script>
-
-## Customize configuration
 
 ### Frontend required module
 ```
