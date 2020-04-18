@@ -26,20 +26,20 @@ $ npm run lnit
 
 ## Explanation
 
-> Frontend in `src` folder includes several parts:
-* using videojs to display video file, the start time can be adjusted depends on request;
-* sound file is merely playing via relevant html code, also start time and volume can be adjusted;
-* axios is the frame used here for storing/accessing data;
-* blockchain is the last part of the code, which adopting Etheruem;   
+* Frontend in `src` folder includes several parts:
+    using videojs to display video file, the start time can be adjusted depends on request;
+    sound file is merely playing via relevant html code, also start time and volume can be adjusted;
+    axios is the frame used here for storing/accessing data;
+    blockchain is the last part of the code, which adopting Etheruem;   
 
 
-> Backend is mainly within [nodejs](./nodejs/README.md) folder
+* Backend is mainly within [nodejs](./nodejs/README.md) folder
 
 
-> Php file in `api` folder can be alternative MySQL option
+* Php file in `api` folder can be alternative MySQL option
 
 
-> Folder `participantContract` stores smart contract relevant files 
+* Folder `participantContract` stores smart contract relevant files 
 
 #### Play Syntax
 
@@ -131,19 +131,24 @@ There are several options to **play sound**
 ```
 
 ### Frontend required module
-
-> $ npm install video.js
-
-> $ npm install --save videojs-contrib-hls
-
-> $ npm install bootstrap-vue
-
-> $ npm install vue-router
-
-> $ npm install web3
-
-> $ npm install axios
-
+```
+$ npm install video.js
+```
+```
+$ npm install --save videojs-contrib-hls
+```
+```
+$ npm install bootstrap-vue
+```
+```
+$ npm install vue-router
+```
+```
+$ npm install web3
+```
+```
+$ npm install axios
+```
 
 
 
