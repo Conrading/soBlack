@@ -27,8 +27,8 @@ $ service mysqld restart
 
 * This folder refers to [nodejs](https://grokonez.com/frontend/vue-js/vue-js-nodejs-express-restapis-sequelize-orm-mysql-crud-example) 
 
-1. DataBase is **MySQL**;
-2. DataBase name is **silex_test**, while the talbe name is **test**
+    1. DataBase is **MySQL**
+    2. DataBase name is **silex_test**, while the talbe name is **test**
 
 * More Nodejs Express Framework [link](https://www.tutorialspoint.com/nodejs/nodejs_express_framework.htm) 
 
