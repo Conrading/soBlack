@@ -1,7 +1,10 @@
-# Ethereum test by Silex Oasis
+# Ethereum test
+
+> by Silex Oasis
+> 2020 April
 
 #### Project setup
-```node
+``` node
 npm install
 ```
 
@@ -17,26 +20,26 @@ npm run build
 
 #### Lints and fixes files
 ```
-npm run lint
+npm run lnit
 ```
 
 ## Explanation
-```
-Frontend in **src** includes several parts:
+
+> Frontend in `src ` folder includes several parts:
 * using videojs to display video file, the start time can be adjusted depends on request;
 * sound file is merely playing via relevant html code, also start time and volume can be adjusted;
 * axios is the frame used here for storing/accessing data;
 * blockchain is the last part of the code, which adopting Etheruem;   
-```
-```
-Backend is mainly within **nodejs** folder
-```
-```
-Php file in **api** folder can be alternative MySQL option
-```
-```
-Folder **participantContract** stores smart contract relevant files 
-```
+
+
+> Backend is mainly within [nodejs](./nodejs/README.md) folder
+
+
+> Php file in `api ` folder can be alternative MySQL option
+
+
+> Folder `participantContract ` stores smart contract relevant files 
+
 ### Play Syntax
 
 
@@ -44,7 +47,7 @@ There are several options to **display video**, which can also refer to this [li
 
 
 1. Option 1 by ref
-```javascript
+``` javascript
     <html>
         <video ref="videoPlayer" class="video-js vjs-default-skin vjs-16-9" data-setup="{}"></video>
     </html>
@@ -76,7 +79,7 @@ There are several options to **display video**, which can also refer to this [li
     </script>
 ```
 2. Option 2 by ref
-```javascript
+``` javascript
     <html>
         <video ref="videoPlayer" class="video-js vjs-default-skin vjs-16-9" data-setup="{}"></video>
     </html>
@@ -86,7 +89,7 @@ There are several options to **display video**, which can also refer to this [li
     </script>
 ```
 3. Option 3 by id
-```javascript
+``` javascript
     <html>
         <video id="videoPlayer" class="video-js vjs-default-skin vjs-16-9" data-setup="{}">
             <source src='https://www.youtube.com/watch?v=Y-iVuV__cD8'>
@@ -99,7 +102,7 @@ There are several options to **display video**, which can also refer to this [li
 ```
 
 4. Option 4 straight play by ref
-```javascript
+``` javascript
     <html>
         <video ref="videoPlayer" class="video-js vjs-default-skin vjs-16-9" data-setup="{}">
             <source src='https://www.youtube.com/watch?v=Y-iVuV__cD8'>
@@ -114,7 +117,7 @@ There are several options to **display video**, which can also refer to this [li
 There are several options to **play sound**
 
 1. Option 1 straight play by id
-```javascript
+``` javascript
     <html>
       <audio id="Sound" controls autoplay preload="auto">
         <source src="./folder/file">
@@ -127,14 +130,14 @@ There are several options to **play sound**
 ```
 
 ### Frontend required module
-```
+
 > $ npm install video.js
 > $ npm install --save videojs-contrib-hls
 > $ npm install bootstrap-vue
 > $ npm install vue-router
 > $ npm install web3
 > $ npm install axios
-```
+
 
 
 
