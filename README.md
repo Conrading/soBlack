@@ -1,6 +1,7 @@
 # Ethereum test
 
 > by Silex Oasis
+
 > 2020 April
 
 #### Project setup
@@ -25,7 +26,7 @@ npm run lnit
 
 ## Explanation
 
-> Frontend in `src ` folder includes several parts:
+> Frontend in `src` folder includes several parts:
 * using videojs to display video file, the start time can be adjusted depends on request;
 * sound file is merely playing via relevant html code, also start time and volume can be adjusted;
 * axios is the frame used here for storing/accessing data;
@@ -35,10 +36,10 @@ npm run lnit
 > Backend is mainly within [nodejs](./nodejs/README.md) folder
 
 
-> Php file in `api ` folder can be alternative MySQL option
+> Php file in `api` folder can be alternative MySQL option
 
 
-> Folder `participantContract ` stores smart contract relevant files 
+> Folder `participantContract` stores smart contract relevant files 
 
 ### Play Syntax
 
@@ -132,10 +133,15 @@ There are several options to **play sound**
 ### Frontend required module
 
 > $ npm install video.js
+
 > $ npm install --save videojs-contrib-hls
+
 > $ npm install bootstrap-vue
+
 > $ npm install vue-router
+
 > $ npm install web3
+
 > $ npm install axios
 
 
