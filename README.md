@@ -42,6 +42,7 @@ Folder **participantContract** stores smart contract relevant files
 
 There are several options to **display video**, which can also refer to this [link]( https://docs.videojs.com/tutorial-player-workflows.html#dealing-with-the-source-or-the-poster-on-the-player)
 
+```
 1. Option 1 by ref
     
     <html>
@@ -73,6 +74,8 @@ There are several options to **display video**, which can also refer to this [li
         ],
       }, function () {videoDisplay.play()})
     </script>
+```
+```
 2. Option 2 by ref
     <html>
         <video ref="videoPlayer" class="video-js vjs-default-skin vjs-16-9" data-setup="{}"></video>
@@ -81,6 +84,8 @@ There are several options to **display video**, which can also refer to this [li
         const videoDisplay = this.$refs.videoPlayer
         videojs(videoDisplay, function () {videoDisplay.currentTime = 10; videoDisplay.play()})
     </script>
+```
+```
 3. Option 3 by id
     <html>
         <video id="videoPlayer" class="video-js vjs-default-skin vjs-16-9" data-setup="{}">
@@ -91,6 +96,8 @@ There are several options to **display video**, which can also refer to this [li
         var localVideo = document.getElementById("videoPlayer");
         this.localVideo = videojs(document.getElementById("videoPlayer"), { "techOrder": ["youtube", "hls","flash","html5"]}, function () {})
     </script>
+```
+```
 4. Option 4 straight play by ref
     <html>
         <video ref="videoPlayer" class="video-js vjs-default-skin vjs-16-9" data-setup="{}">
@@ -101,9 +108,10 @@ There are several options to **display video**, which can also refer to this [li
         const videoDisplay = videojs(this.$refs.videoPlayer);
         videoDisplay01.play();
     </script>
-
+```
 
 There are several options to **play sound**
+```
 1. Option 1 straight play by id
     <html>
       <audio id="Sound" controls autoplay preload="auto">
@@ -114,6 +122,7 @@ There are several options to **play sound**
         var soundTrack = document.getElementById("Sound");
         soundTrack.play(soundTrack.currentTime = 20, soundTrack.volume = 0.5);
     </script>
+```
 
 ### Frontend required module
 ```

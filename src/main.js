@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Main from './Main.vue'
+import Homepage from './Homepage.vue'
 
 import 'video.js/dist/video-js.css'
 import Video from 'video.js'
@@ -13,5 +13,5 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
-  render: h => h(Main),
+  render: h => h(Homepage),
 }).$mount('#app')
