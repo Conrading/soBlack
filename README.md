@@ -1,4 +1,4 @@
-# SilexOasisblack
+# Ethereum test by Silex Oasis
 
 ## Project setup
 ```
