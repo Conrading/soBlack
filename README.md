@@ -21,19 +21,22 @@ npm run lint
 ```
 
 ## Explanation
-
+```
 Frontend in **src** includes several parts:
 1. using videojs to display video file, the start time can be adjusted depends on request;
 2. sound file is merely playing via relevant html code, also start time and volume can be adjusted;
 3. axios is the frame used here for storing/accessing data;
 4. blockchain is the last part of the code, which adopting Etheruem;   
-
-
+```
+```
 Backend is mainly within **nodejs** folder
+```
+```
 Php file in **api** folder can be alternative MySQL option
-
+```
+```
 Folder **participantContract** stores smart contract relevant files 
-
+```
 ### Play Syntax
 
 
