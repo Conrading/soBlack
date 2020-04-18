@@ -7,9 +7,7 @@ npm init
 
 ### Run server
 ```
-npm start
-```
-```
+npm start / or
 node server.js
 ```
 ### Service Command for Linux

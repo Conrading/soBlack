@@ -107,9 +107,9 @@ There are several options to **play sound**
         soundTrack.play(soundTrack.currentTime = 20, soundTrack.volume = 0.5);
     </script>
 
-### Customize configuration
+## Customize configuration
 
-## Frontend required module
+### Frontend required module
 ```
 $ npm install video.js
 $ npm install --save videojs-contrib-hls
