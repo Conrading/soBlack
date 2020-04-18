@@ -1,21 +1,21 @@
 # Ethereum test by Silex Oasis
 
-### Project setup
-```
+#### Project setup
+```node
 npm install
 ```
 
-### Compiles and hot-reloads for development
+#### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+#### Compiles and minifies for production
 ```
 npm run build
 ```
 
-### Lints and fixes files
+#### Lints and fixes files
 ```
 npm run lint
 ```
@@ -23,10 +23,10 @@ npm run lint
 ## Explanation
 ```
 Frontend in **src** includes several parts:
-1. using videojs to display video file, the start time can be adjusted depends on request;
-2. sound file is merely playing via relevant html code, also start time and volume can be adjusted;
-3. axios is the frame used here for storing/accessing data;
-4. blockchain is the last part of the code, which adopting Etheruem;   
+* using videojs to display video file, the start time can be adjusted depends on request;
+* sound file is merely playing via relevant html code, also start time and volume can be adjusted;
+* axios is the frame used here for storing/accessing data;
+* blockchain is the last part of the code, which adopting Etheruem;   
 ```
 ```
 Backend is mainly within **nodejs** folder
@@ -42,9 +42,9 @@ Folder **participantContract** stores smart contract relevant files
 
 There are several options to **display video**, which can also refer to this [link]( https://docs.videojs.com/tutorial-player-workflows.html#dealing-with-the-source-or-the-poster-on-the-player)
 
-```
+
 1. Option 1 by ref
-    
+```javascript
     <html>
         <video ref="videoPlayer" class="video-js vjs-default-skin vjs-16-9" data-setup="{}"></video>
     </html>
@@ -75,8 +75,8 @@ There are several options to **display video**, which can also refer to this [li
       }, function () {videoDisplay.play()})
     </script>
 ```
-```
 2. Option 2 by ref
+```javascript
     <html>
         <video ref="videoPlayer" class="video-js vjs-default-skin vjs-16-9" data-setup="{}"></video>
     </html>
@@ -85,8 +85,8 @@ There are several options to **display video**, which can also refer to this [li
         videojs(videoDisplay, function () {videoDisplay.currentTime = 10; videoDisplay.play()})
     </script>
 ```
-```
 3. Option 3 by id
+```javascript
     <html>
         <video id="videoPlayer" class="video-js vjs-default-skin vjs-16-9" data-setup="{}">
             <source src='https://www.youtube.com/watch?v=Y-iVuV__cD8'>
@@ -97,8 +97,9 @@ There are several options to **display video**, which can also refer to this [li
         this.localVideo = videojs(document.getElementById("videoPlayer"), { "techOrder": ["youtube", "hls","flash","html5"]}, function () {})
     </script>
 ```
-```
+
 4. Option 4 straight play by ref
+```javascript
     <html>
         <video ref="videoPlayer" class="video-js vjs-default-skin vjs-16-9" data-setup="{}">
             <source src='https://www.youtube.com/watch?v=Y-iVuV__cD8'>
@@ -111,8 +112,9 @@ There are several options to **display video**, which can also refer to this [li
 ```
 
 There are several options to **play sound**
-```
+
 1. Option 1 straight play by id
+```javascript
     <html>
       <audio id="Sound" controls autoplay preload="auto">
         <source src="./folder/file">
@@ -126,12 +128,12 @@ There are several options to **play sound**
 
 ### Frontend required module
 ```
-$ npm install video.js
-$ npm install --save videojs-contrib-hls
-$ npm install bootstrap-vue
-$ npm install vue-router
-$ npm install web3
-$ npm install axios
+> $ npm install video.js
+> $ npm install --save videojs-contrib-hls
+> $ npm install bootstrap-vue
+> $ npm install vue-router
+> $ npm install web3
+> $ npm install axios
 ```
 
 
