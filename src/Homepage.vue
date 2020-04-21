@@ -4,10 +4,10 @@
             <h3>Silex | Oasis</h3>
         </div>
         <div class="searchBar">
-            <input type="text" v-model="search" placeholder="Search Collaboration!" @click="searchTask">
+            <input type="text" v-model="search" placeholder="New Search" @click="searchTask">
         </div>
-        <SearchDisplay></SearchDisplay>
         <br>
+        <SearchDisplay></SearchDisplay>
         <b-row class="mt-5 justify-content-md-center">
             <h6>2020 Silex Oasis. All Rights Reserved</h6>
         </b-row>

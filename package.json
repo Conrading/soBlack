@@ -19,9 +19,13 @@
     "videojs-youtube": "^2.6.1",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.5",
+    "vue-nice-scrollbar": "^2.0.1",
     "vue-router": "^3.1.6",
+    "vue-scroll": "^2.1.13",
     "vue-upload-component": "^2.8.20",
+    "vue-virtual-scroll-list": "^2.0.8",
     "vue-youtube": "^1.4.0",
+    "vuescroll": "^4.15.0",
     "web3": "^1.2.6"
   },
   "devDependencies": {
@@ -31,6 +35,8 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "less": "^3.11.1",
+    "less-loader": "^5.0.0",
     "video.js": "^7.6.6",
     "vue-template-compiler": "^2.6.10"
   },
