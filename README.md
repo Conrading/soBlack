@@ -129,8 +129,13 @@ There are several options to **play sound**
         soundTrack.play(soundTrack.currentTime = 20, soundTrack.volume = 0.5);
     </script>
 ```
+#### Scrolling 
 
-### Frontend required module
+* The search page adopts code [link]( https://www.npmjs.com/package/vue-virtual-scroll-list)
+
+* Files in `line` folder is functioned as database
+
+### Frontend required package
 ```
 $ npm install video.js
 ```
@@ -148,6 +153,9 @@ $ npm install web3
 ```
 ```
 $ npm install axios
+```
+```
+$ npm install vue-virtual-scroll-list
 ```
 
 
