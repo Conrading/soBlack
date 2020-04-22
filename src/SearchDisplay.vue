@@ -37,7 +37,7 @@ import { TAB_TYPE, DEFAULT_TAB } from './line/const'
 //import './assets/mymainstyles.less'
 
 const DataItems = []
-let count = 17
+let count = 17 // if we change the number, we should also change in salesline and salestitle
 while (count--) {
     const index = 17 - count
     DataItems.push({

@@ -1,6 +1,30 @@
 <template>
   <div class="container">
 
+    <!--test auto adding player-->
+    <!--div class="videoRunner">
+      <ul id="autoplayers">
+        <comment: adding index in v-for to show video side by side>
+        <li v-for="item in sourceStorage" :key='item'>
+          <video 
+          v-if='item === "videoSource"' 
+          ref="videoPlayer" 
+          class="video-js vjs-default-skin vjs-16-9"
+          controls autoplay loop preload="auto"
+          data-setup='{}'>
+            <source :src="sourceFolder" type="video/mp4">
+          </video>
+          <audio 
+          v-else-if='item === "audioSource" '
+          id="trackSound"
+          ref="trackSound"
+          controls autoplay preload="auto">
+            <source :src="sourceFolder">
+          </audio>
+        </li>
+      </ul>
+    </div-->
+    
     <!--player is here /-->
     <div class="videoRunner">
       <b-row class="justify-content-md-center">
