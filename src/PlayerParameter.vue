@@ -51,11 +51,17 @@
         <div>
             <b-row align-h="center">
                 <b-col align-self="center" md="2">Input Volume</b-col>
-                <b-col md="3"><b-form-input
+                <b-col md="3">
+                  <input id="soundVolume" 
+                    data-slider-id='ex1Slider' type="text" 
+                    data-slider-min="0" 
+                    data-slider-max="10" 
+                    data-slider-step="1" 
+                    data-slider-value="4"/>
+                  <!--b-form-input
             id="soundVolume"
             v-model="soundVolume"
-            placeholder="input 1 > number > 0"
-          />
+            placeholder="input 1 > number > 0"/-->
                 </b-col>
             </b-row>
         </div>
@@ -126,39 +132,12 @@ export default {
       }
     },
     mounted () {      
-      //the below is for YouTube css
-      let minYoutuBer = document.createElement('script');
-      minYoutuBer.setAttribute('src',"./dist/youtube.min.js");
-      minYoutuBer.async = true;
-      document.head.appendChild(minYoutuBer);
-
-      let minYoutuBerNode = document.createElement('script');
-      minYoutuBerNode.setAttribute('src',"../node_modules/video.js/dist/video-js.min.css");
-      minYoutuBerNode.async = true;
-      document.head.appendChild(minYoutuBerNode);
-      //the above is for YouTube css
-
-      //to run video, obtain ID is first
-      /*
-      var localVideo01 = document.getElementById("videoPlayer01");
-      */
-      //here is enough to run video, such as:
-      //this.localVideo01 = videojs(document.getElementById("videoPlayer01"), { "techOrder": ["youtube", "hls","flash","html5"]}, function () {})
-      //or this way:
-      /*
-      videojs('videoPlayer01', {
-        bigPlayButton: false,
-        textTrackDisplay: false,
-        posterImage: false,
-        errorDisplay: false,
-        controlBar: true,
-      }, function () {localVideo01.play()})
-      */
-      //next line using videojs to run sound file is also feasible
-      //videojs('trackSound01', function () {sound01Track.currentTime = 10; sound01Track.play()})
-
-      //this.youtubePlayer = videojs(document.getElementById("youtube-video"), {"techOrder": ["youtube", "html5"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=hGW4b28wF80"}]}, function () {})
-
+      this.soundVolume = new Slider('soundVolume', {
+        formatter: function(value) {
+          return 'Current value: ' + value;
+        }
+      });
+      
     },
     methods: {
       sound01 () {
@@ -346,5 +325,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;  
 }
-
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
 </style>

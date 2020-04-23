@@ -102,7 +102,7 @@ There are several options to **display video**, which can also refer to this [li
     </script>
 ```
 
-4. Option 4 straight play by ref
+4. Option 4 YouTube play by ref
 ``` javascript
     <html>
         <video ref="videoPlayer" class="video-js vjs-default-skin vjs-16-9" data-setup="{}">
@@ -113,6 +113,30 @@ There are several options to **display video**, which can also refer to this [li
         const videoDisplay = videojs(this.$refs.videoPlayer);
         videoDisplay01.play();
     </script>
+```
+> Alternative for YouTube insert source within <script>
+
+``` javascript
+    <script>
+    this.youtubePlayer = videojs(
+        document.getElementById("youtube-video"), 
+        {"techOrder": ["youtube", "html5"], 
+        "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=hGW4b28wF80"}]}, 
+        function () {})
+    </script>
+```
+> mount YouTube CSS as below
+
+``` javascript
+      let minYoutuBer = document.createElement('script');
+      minYoutuBer.setAttribute('src',"./dist/youtube.min.js");
+      minYoutuBer.async = true;
+      document.head.appendChild(minYoutuBer);
+
+      let minYoutuBerNode = document.createElement('script');
+      minYoutuBerNode.setAttribute('src',"../node_modules/video.js/dist/video-js.min.css");
+      minYoutuBerNode.async = true;
+      document.head.appendChild(minYoutuBerNode);
 ```
 
 There are several options to **play sound**
