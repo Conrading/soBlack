@@ -5,7 +5,7 @@
     <span># {{ source.index }}</span>
     <span>{{ source.name }}</span>
     <br>
-    <span>{{ source.line }}</span>
+    <span v-on:click="linkPlaySource">{{ source.line }}</span>
   </div>
 </template>
 
@@ -18,6 +18,11 @@ export default {
       default () {
         return {}
       }
+    }
+  },
+  methods: {
+    linkPlaySource() {
+      alert('Now you are reaching greatest work in mankind')
     }
   }
 }

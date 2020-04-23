@@ -1,6 +1,9 @@
 <template>
     <b-container>
         <div>
+            <div class="tagetProject">
+                <h6>Search Result</h6>
+            </div>
         <!--virtual-list :size="40" :remain="8">
             <div v-for="i in 20" :key="i">
                 <span class="carousel-text">guess{{i}}</span>
@@ -10,8 +13,8 @@
         </virtual-list-->
             <div v-show="isShowView">
                 <virtual-list class="list scroll-touch"
-                :size="50"
-                :keeps="30"
+                :size="10"
+                :keeps="30" 
                 :item-class="'list-item-fixed'"
 
                 :data-key="'id'"

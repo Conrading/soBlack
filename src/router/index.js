@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Homepage from '../Homepage.vue';
+import SearchDisplay from '../SearchDisplay.vue';
 import Main from '../Main'
 import PlayerParameter from '../PlayerParameter'
 import FilePlayer from '../FilePlayer';
@@ -12,6 +14,16 @@ Vue.use(Router);
 export default new Router({
   mode: 'hash',
   routes: [
+    {
+      path: '/SearchDisplay',
+      name: 'SearchDisplay',
+      component: SearchDisplay,
+    },
+    {
+      path: '/Homepage',
+      name: 'Homepage',
+      component: Homepage,
+    },
     {
       path: '/Main',
       name: 'Main',

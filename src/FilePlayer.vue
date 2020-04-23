@@ -1,7 +1,6 @@
 <template>
   <div class="container">
 
-    <!--test auto adding player-->
     <!--div class="videoRunner">
       <ul id="autoplayers">
         <comment: adding index in v-for to show video side by side>
@@ -24,7 +23,7 @@
         </li>
       </ul>
     </div-->
-    
+
     <!--player is here /-->
     <div class="videoRunner">
       <b-row class="justify-content-md-center">
@@ -60,6 +59,7 @@
     </div>
     <!--control button /-->
         <div>
+    <!--div :style="{backgroundImage: `url(${lightimage})`}"-->
             <b-row class="justify-content-md-center">
           <label for="generalPlay">
             Play All Together
@@ -72,8 +72,9 @@
             <b-row class="mt-2 justify-content-md-center">
               <p>Status: <strong>{{ playStatus }}</strong></p>
             </b-row>
+    </div>
         </div> 
-  </div>
+  <!--/div-->
 </template>
 
 <script>
@@ -85,6 +86,7 @@ import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue'
 Vue.use(BootstrapVue, BootstrapVueIcons)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import lightimage from './storage/IMG_5.png'
 
 //import axios from 'axios'
 //Vue.use(axios)
@@ -96,6 +98,7 @@ export default {
   },
   data () {
     return {
+        lightimage,
         playStatus: null,
         soun01Storage: [0, 0.5, 0],//startTime, soundVolume, durationTime
     }

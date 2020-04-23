@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Homepage from './Homepage.vue'
+//import Main from './Main.vue'
 
 import 'video.js/dist/video-js.css'
 import Video from 'video.js'
