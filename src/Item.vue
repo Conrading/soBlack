@@ -22,6 +22,7 @@ export default {
   },
   methods: {
     linkPlaySource() {
+      //link to database
       alert('Now you are reaching greatest work in mankind')
     }
   }

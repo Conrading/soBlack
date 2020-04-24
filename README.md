@@ -106,7 +106,7 @@ There are several options to **display video**, which can also refer to this [li
 ``` javascript
     <html>
         <video ref="videoPlayer" class="video-js vjs-default-skin vjs-16-9" data-setup="{}">
-            <source src='https://www.youtube.com/watch?v=Y-iVuV__cD8'>
+            <source src='https://www.youtube.com/watch?v=wNeOGGzFP24'>
         </video>
     </html>
     <script>

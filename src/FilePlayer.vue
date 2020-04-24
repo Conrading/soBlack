@@ -86,7 +86,7 @@ import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue'
 Vue.use(BootstrapVue, BootstrapVueIcons)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import lightimage from './storage/IMG_5.png'
+
 
 //import axios from 'axios'
 //Vue.use(axios)
@@ -98,7 +98,6 @@ export default {
   },
   data () {
     return {
-        lightimage,
         playStatus: null,
         soun01Storage: [0, 0.5, 0],//startTime, soundVolume, durationTime
     }

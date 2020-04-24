@@ -36,32 +36,41 @@
               <p>Status: <strong>{{ playStatus }}</strong></p>
             </b-row>
         </div--> 
+        <div :style="{backgroundImage: `url(${lightimage})`}"> <!--upload image here-->
+              <b-row class="justify-content-md-center">
+          <label class="text-white" for="parameterSetting">
+            ---- Choose the File you want to set ----
+          </label>
+              </b-row>
+              <ul id="autobutton">
+                <b-row align-h="center">
+                  <li v-for="name in dbArray" :key='name'>
+                    <b-col><b-button @click="selectbutton" size="sm" pill variant="outline-light">{{ name }}</b-button></b-col>
+                  </li>
+                </b-row>
+              </ul>
+              <b-row class="justify-content-md-center">
+          <!--b-button id="leftVideo" @click="leftVideo" :pressed.sync="leftVideobutton" pill variant="outline-success">Left Video</b-button>
+          <b-button id="rightVideo" @click="rightVideo" :pressed.sync="rightVideobutton" pill variant="outline-success">Right Video</b-button>
+          <b-button id="sound01" @click="sound01" :pressed.sync="sound01button" pill variant="outline-secondary">First Sound</b-button-->
+              </b-row>
+        </div>
 
-        <div>
+        <div class="mt-4">
             <b-row align-h="center">
-                <b-col align-self="center" md="2">Input Start Time</b-col>
-                <b-col md="3"><b-form-input
-            id="startTime"
-            v-model="startTime"
-            placeholder="input number > 0"
-          />
-                </b-col>
+                <b-col align-h="end" align-self="center" lg="1.5">Start playing at </b-col>
+                <b-col md="1"><b-form-input id="startTime" v-model="startTime"/></b-col>
+                <b-col align-h="start" align-self="center" lg="0.8">seconds</b-col>
             </b-row>
         </div>
-        <div>
+        <div class="my-4">
             <b-row align-h="center">
                 <b-col align-self="center" md="2">Input Volume</b-col>
                 <b-col md="3">
+                  <form class="range-field w-75">
                   <input id="soundVolume" 
-                    data-slider-id='ex1Slider' type="text" 
-                    data-slider-min="0" 
-                    data-slider-max="10" 
-                    data-slider-step="1" 
-                    data-slider-value="4"/>
-                  <!--b-form-input
-            id="soundVolume"
-            v-model="soundVolume"
-            placeholder="input 1 > number > 0"/-->
+                    class="border-0" type="range" min="0" max="10" /></form>
+                    <span class="font-weight-bold text-primary"></span>
                 </b-col>
             </b-row>
         </div>
@@ -76,19 +85,10 @@
                 </b-col>
             </b-row>
         </div> 
+
         <div>
               <b-row class="mt-3 justify-content-md-center">
-          <label for="parameterSetting">
-            Pressing below button to set Parameter
-          </label>
-              </b-row>
-              <b-row class="justify-content-md-center">
-          <b-button id="leftVideo" @click="leftVideo" :pressed.sync="leftVideobutton" pill variant="outline-success">Left Video</b-button>
-          <b-button id="rightVideo" @click="rightVideo" :pressed.sync="rightVideobutton" pill variant="outline-success">Right Video</b-button>
-          <b-button id="sound01" @click="sound01" :pressed.sync="sound01button" pill variant="outline-secondary">First Sound</b-button>
-              </b-row>
-              <b-row class="mt-3 justify-content-md-center">
-          <b-button @click="parameterSetting" :pressed.sync="settingWhich" variant="dark">Submit All Parameter</b-button>
+          <b-button @click="parameterSetting" :pressed.sync="settingWhich" variant="outline-primary">Submit Setting</b-button>
               </b-row>
               <b-row class="mt-3 justify-content-md-center">
           <p>Status: <strong>{{ settingWhich }}</strong></p>
@@ -112,31 +112,40 @@ Vue.use(BootstrapVue)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import storageList from './storage/storageList' //database information input
 //import fs from 'fs'
 import axios from 'axios'
 Vue.use(axios)
 //import $ from 'jquery'
-
+import lightimage from './storage/1.jpg' //background image
 
 
 export default {
     name: "PlayerParameter",
     data () {
       return {
+        lightimage, //image parameter
+        dbArray: [],
         playStatus: null,
-        settingWhich: null,
+        settingWhich: null, //the status showing bottom
 
         startTime: null,
         soundVolume: null,
         durationTime: null,
       }
     },
-    mounted () {      
-      this.soundVolume = new Slider('soundVolume', {
-        formatter: function(value) {
-          return 'Current value: ' + value;
-        }
-      });
+    created () {
+      //here we load the filename within storageList onto dbArray
+      let count = storageList.length;
+      while (count--) {
+        this.dbArray.push(storageList[count].filename)
+      }
+    },
+    mounted () {    
+      //this.count.push(storageList.filename)  we just need to know how many in array
+
+      //this.soundVolume = document.getElementById("soundVolume").slider();
+      //this.soundVolume = Slider.slider();
       
     },
     methods: {
@@ -297,10 +306,6 @@ export default {
 }
 
 
-
-
-//wNeOGGzFP24
-
 </script>
 
 
@@ -324,8 +329,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;  
-}
-#ex1Slider .slider-selection {
-	background: #BABABA;
 }
 </style>
