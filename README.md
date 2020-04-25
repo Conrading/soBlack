@@ -97,7 +97,7 @@ There are several options to **display video**, which can also refer to this [li
         </video>
     </html>
     <script>
-        var localVideo = document.getElementById("videoPlayer");
+        //var localVideo = document.getElementById("videoPlayer");
         this.localVideo = videojs(document.getElementById("videoPlayer"), { "techOrder": ["youtube", "hls","flash","html5"]}, function () {})
     </script>
 ```

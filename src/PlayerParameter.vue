@@ -45,7 +45,7 @@
               <ul id="autobutton">
                 <b-row align-h="center">
                   <li v-for="name in dbArray" :key='name'>
-                    <b-col><b-button @click="selectbutton" size="sm" pill variant="outline-light">{{ name }}</b-button></b-col>
+                    <b-col><b-button id="selectbutton" @click="selectbutton" size="sm" pill variant="outline-light">{{ name }}</b-button></b-col>
                   </li>
                 </b-row>
               </ul>
@@ -125,7 +125,7 @@ export default {
     data () {
       return {
         lightimage, //image parameter
-        dbArray: [],
+        dbArray: [], //store data from database
         playStatus: null,
         settingWhich: null, //the status showing bottom
 
@@ -142,13 +142,15 @@ export default {
       }
     },
     mounted () {    
-      //this.count.push(storageList.filename)  we just need to know how many in array
-
-      //this.soundVolume = document.getElementById("soundVolume").slider();
-      //this.soundVolume = Slider.slider();
       
     },
     methods: {
+      selectbutton () {
+        //have not yet finished !!!!!!!!!!!!!
+        document.getElementById("selectbutton").style.color = "red";
+        this.settingWhich = `You are setting ${name}`;
+      },
+      //so far, the below is useless
       sound01 () {
         //verify whether the input is correct
         if (Number(this.startTime) < 0) {
@@ -249,7 +251,8 @@ export default {
         videojs(videoDisplay01).on("ended", () => {
           this.playStatus = "now it has finished";
         })        
-      }, 
+      },
+      /*
       rightVideo () {
         if (Number(this.startTime) < 0) {
           alert('please input start time in seconds greater than 0');
@@ -302,6 +305,7 @@ export default {
         //store setting in database
         this.settingWhich = "Setting Stored and Submitted"
       }
+    */
     }
 }
 
