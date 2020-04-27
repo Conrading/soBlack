@@ -9,7 +9,8 @@
               <li v-for="(video, index) in videoArray" :key='(video, index)'>
                 <video 
                 v-if=" index % 2 == 0 "
-                ref="videoPlayer" 
+                ref="videoPlayerL" 
+                @click="stopPlay"
                 class="video-js vjs-custom-skin vjs-16-9"
                 controls autoplay loop preload="auto"
                 data-setup='{}'>
@@ -21,7 +22,8 @@
               <li v-for="(video, index) in videoArray" :key='(video, index)'>
                 <video 
                 v-if=" (index+1) % 2 == 0 "
-                ref="videoPlayer" 
+                ref="videoPlayerR" 
+                @click="stopPlay"
                 class="video-js vjs-custom-skin vjs-16-9"
                 controls autoplay loop preload="auto"
                 data-setup='{}'>
@@ -117,39 +119,34 @@ export default {
       }
     }
   },
+  mounted () {
+
+  },
   methods: {
       generalPlay() {
-        const videoDisplay = this.$refs.videoPlayer;
-        videojs(videoDisplay, {controlBar: true}, () => {videoDisplay.currentTime = 5, videoDisplay.volume = 0.2}).play();
-
+        let i = storageList.length;
+        while (i--) {
+          const videoDisplay = this.$refs.videoPlayer;
+          videojs(videoDisplay, 
+            {controlBar: true}, 
+            () => {
+              videoDisplay.currentTime = storageList[i].startPlay, 
+              videoDisplay.volume = storageList[i].volume
+              }).play();
+        }
         //playing sound
         var sound01Track = document.getElementById("trackSound01");
         sound01Track.play(sound01Track.currentTime = this.soun01Storage[0], sound01Track.volume = this.soun01Storage[1]);
         //somehow document.getElementById does not work for video here
-        const videoDisplay01 = this.$refs.videoPlayer01;
-        const videoDisplay02 = this.$refs.videoPlayer02;
-        const videoDisplay03 = this.$refs.videoPlayer03;
-        const videoDisplay04 = this.$refs.videoPlayer04;
-        videojs(videoDisplay01, {controlBar: true}, () => {videoDisplay01.currentTime = 5, videoDisplay01.volume = 0.2}).play();
-        videojs(videoDisplay02, {controlBar: true}, () => {videoDisplay02.currentTime = 0, videoDisplay02.volume = 0.1}).play();
-        videojs(videoDisplay03, {controlBar: true}, () => {videoDisplay03.currentTime = 10.5, videoDisplay03.volume = 0.3}).play();
-        videojs(videoDisplay04, {controlBar: true}, () => {videoDisplay04.currentTime = 3.7, videoDisplay04.volume = 0.3}).play();
         this.playStatus = "it is playing now";
       },
       stopPlay () {
-        const videoDisplay = this.$refs.videoPlayer;
-        videojs(videoDisplay).pause();
-
-        var sound01Track = document.getElementById("trackSound01");
-        const videoDisplay01 = this.$refs.videoPlayer01;
-        const videoDisplay02 = this.$refs.videoPlayer02;
-        const videoDisplay03 = this.$refs.videoPlayer03;
-        const videoDisplay04 = this.$refs.videoPlayer04;
-        videojs(videoDisplay01).pause();
-        videojs(videoDisplay02).pause();
-        videojs(videoDisplay03).pause();
-        videojs(videoDisplay04).pause();
-        sound01Track.pause();
+        const videoDisplayL = this.$refs.videoPlayerL;
+        videojs(videoDisplayL, {controlBar: true}).pause();
+        const videoDisplayR = this.$refs.videoPlayerR;
+        videojs(videoDisplayR, {controlBar: true}).pause();
+        //var sound01Track = document.getElementById("trackSound01");
+        //sound01Track.pause();
         this.playStatus = "stop as you request";
       },
   }

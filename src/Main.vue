@@ -9,10 +9,10 @@
     <!--a href="url"><h6>back to search page</h6></a-->
     <nav>
       <div class="directing">
-          <a><router-link to="/Blank"><b-button size="sm" variant="outline-dark"> Purpose </b-button></router-link></a>
           <a><router-link to="/Uploading"><b-button size="sm" variant="outline-dark"> Uploading Files </b-button></router-link></a>
           <a><router-link to="/PlayerParameter"><b-button size="sm" variant="outline-dark"> Set Parameter </b-button></router-link></a>
           <a><router-link to="/BlockchainHere"><b-button size="sm" variant="outline-dark"> Blockchain </b-button></router-link></a>
+          <a><router-link to="/Blank"><b-button size="sm" variant="outline-dark"> Copy Right Claim </b-button></router-link></a>
         <router-view/>
       </div>
     </nav>
