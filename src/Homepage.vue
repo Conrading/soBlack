@@ -19,11 +19,13 @@
                 <SearchDisplay></SearchDisplay>
             </span>
         </div-->
-        <div id="mainPart">
+        <div id="mainPart" class="mt-3">
+    <div :style="{backgroundImage: `url(${lightimage})`}"> <!--upload image here-->
             <b-row>
                 <b-col cols="8"><FilePlayer></FilePlayer></b-col>
                 <b-col cols="4"><SearchDisplay></SearchDisplay></b-col>
             </b-row>
+    </div>
             <b-row><Main></Main></b-row>
         </div>
         <b-row class="mt-5 justify-content-md-center">
@@ -40,6 +42,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import SearchDisplay from './SearchDisplay'
 import FilePlayer from './FilePlayer'
 import Main from './Main'
+import lightimage from './storage/3.jpg' //background image
 
 export default {
     name: 'Homepage',
@@ -50,6 +53,7 @@ export default {
     },
     data () {
         return {
+        lightimage, //image parameter
             search: '',
             //inputstatus: false
         }

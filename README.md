@@ -67,9 +67,9 @@ There are several options to **display video**, which can also refer to this [li
             timeDivider: true,
             durationDisplay: true,
             remainingTimeDisplay: true
-          }
+          },
         width: '450',
-        height: '600'
+        height: '600',
         source: [
             {
                 type: 'video/mp4',

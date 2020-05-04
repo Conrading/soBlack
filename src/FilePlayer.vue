@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div :style="{backgroundImage: `url(${lightimage})`}"> <!--upload image here-->
+    <!--div :style="{backgroundImage: `url(${lightimage})`}"--> <!--upload image here-->
       <div class="mt-3 playerMainFrame">
         <ul id="autoplayers">  
           <!--This is video player for two column-->
@@ -8,9 +8,8 @@
             <b-col>
               <li v-for="(video, index) in videoArray" :key='(video, index)'>
                 <video 
-                v-if=" index % 2 == 0 "
-                ref="videoPlayerL" 
-                @click="stopPlay"
+                v-if=" index % 2 == 0 " 
+                ref="videoPlayer" 
                 class="video-js vjs-custom-skin vjs-16-9"
                 controls autoplay loop preload="auto"
                 data-setup='{}'>
@@ -19,14 +18,14 @@
               </li>
             </b-col>
             <b-col>
-              <li v-for="(video, index) in videoArray" :key='(video, index)'>
+              <li v-for="(video, index) in videoArray" :key='(video, index)' >
                 <video 
                 v-if=" (index+1) % 2 == 0 "
-                ref="videoPlayerR" 
-                @click="stopPlay"
+                ref="videoPlayer"
                 class="video-js vjs-custom-skin vjs-16-9"
                 controls autoplay loop preload="auto"
                 data-setup='{}'>
+                <!--ever use :ref="`videoPlayer${index}`" once-->
                   <source v-bind:src="require(`./storage/${video}`)" type="video/mp4">
                 </video>
               </li>
@@ -51,10 +50,9 @@
       <!--b-row class="justify-content-md-center">
         <b-col>
           <video id="videoPlayer01" ref="videoPlayer01" class="video-js vjs-default-skin vjs-16-9" controls autoplay preload="auto" data-setup="{}">
-            <source src="./storage/Drums_Beat.mp4" type="video/mp4">
+            <source src="./storage/rap.mp4" type="video/mp4">
           </video>   
-        </b-col>
-      </b-row-->
+        </b-col-->
     <!--control button /-->
         <div>
             <b-row class="justify-content-md-center">
@@ -70,7 +68,7 @@
               <p class="text-white">Status: <strong class="text-white">{{ playStatus }}</strong></p>
             </b-row>
         </div>
-    </div>
+    <!--/div-->
   </div> 
 </template>
 
@@ -85,7 +83,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import storageList from './storage/storageList' //database information input
 
-import lightimage from './storage/2.jpg' //background image
 
 //import axios from 'axios'
 //Vue.use(axios)
@@ -97,7 +94,8 @@ export default {
   },
   data () {
     return {
-        lightimage, //image parameter
+        videoElement: null, //this is for video play/pause control
+
         videoArray: [],
         audioArray: [],
         picArray:[],
@@ -105,7 +103,7 @@ export default {
         soun01Storage: [],//startTime, soundVolume, durationTime
     }
   },
-  created () {
+  mounted () {
     //here we load the filename within storageList onto dbArray
     let count = storageList.length;
     while (count--) {
@@ -119,36 +117,45 @@ export default {
       }
     }
   },
-  mounted () {
-
-  },
   methods: {
-      generalPlay() {
-        let i = storageList.length;
-        while (i--) {
-          const videoDisplay = this.$refs.videoPlayer;
-          videojs(videoDisplay, 
-            {controlBar: true}, 
-            () => {
-              videoDisplay.currentTime = storageList[i].startPlay, 
-              videoDisplay.volume = storageList[i].volume
-              }).play();
-        }
-        //playing sound
-        var sound01Track = document.getElementById("trackSound01");
-        sound01Track.play(sound01Track.currentTime = this.soun01Storage[0], sound01Track.volume = this.soun01Storage[1]);
-        //somehow document.getElementById does not work for video here
-        this.playStatus = "it is playing now";
-      },
-      stopPlay () {
-        const videoDisplayL = this.$refs.videoPlayerL;
-        videojs(videoDisplayL, {controlBar: true}).pause();
-        const videoDisplayR = this.$refs.videoPlayerR;
-        videojs(videoDisplayR, {controlBar: true}).pause();
-        //var sound01Track = document.getElementById("trackSound01");
-        //sound01Track.pause();
-        this.playStatus = "stop as you request";
-      },
-  }
+    /*
+    updatePaused(event) { //this one links to video DOM
+      this.videoElement = event.target;
+      //this.paused = event.target.paused;
+    },
+    */
+    generalPlay() {
+      let videoElements = this.$el.querySelectorAll('video');
+      const videoDisplay = this.$refs.videoPlayer;
+      let i = videoElements.length;
+      while (i--) {
+        videojs(videoElements[i]).play(
+          videoDisplay[i].currentTime = storageList[i].startPlay,
+          videoDisplay[i].volume = storageList[i].volume)
+      }
+
+      //playing sound
+      //var sound01Track = document.getElementById("trackSound01");
+      //sound01Track.play(sound01Track.currentTime = this.soun01Storage[0], sound01Track.volume = this.soun01Storage[1]);
+      this.playStatus = "it is playing now";
+    },
+    
+    stopPlay () {
+      let videoElements = this.$el.querySelectorAll('video')
+      for (let i = 0; i < videoElements.length; i++) {
+        videoElements[i].pause()
+      }
+      let audioElements = this.$el.querySelectorAll('audio')
+      for (let i = 0; i < audioElements.length; i++) {
+        audioElements[i].pause()
+      }
+      
+      //videojs(this.videoElement).pause(); //this one links to updatePaused to control video
+      //var sound01Track = document.getElementById("trackSound01");
+      //sound01Track.pause();
+      this.playStatus = "stop as you request";
+    },
+    
+  },
 }
 </script>
