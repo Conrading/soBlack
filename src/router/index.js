@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Homepage from '../Homepage.vue';
 import SearchDisplay from '../SearchDisplay.vue';
-import Main from '../Main'
+import ButtonBottom from '../ButtonBottom'
 import PlayerParameter from '../PlayerParameter'
 import FilePlayer from '../FilePlayer';
 import Uploading from '../Uploading';
@@ -25,9 +25,9 @@ export default new Router({
       component: Homepage,
     },
     {
-      path: '/Main',
-      name: 'Main',
-      component: Main,
+      path: '/ButtonBottom',
+      name: 'ButtonBottom',
+      component: ButtonBottom,
     },
     {
       path: '/FilePlayer',

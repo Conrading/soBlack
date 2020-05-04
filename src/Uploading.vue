@@ -1,6 +1,28 @@
 <template>
   <div class="container">
     <div class="uploadingRunner">
+      <!--Choosing file to upload-->
+      <div>
+              <b-row class="justify-content-md-center">
+          <label for="parameterSetting">
+            ---- Choose the File you want to replace ----
+          </label>
+              </b-row>
+              <ul id="autobutton">
+                <b-row align-h="center">
+                  <div v-for="name in dbArray" :key='name.id'>
+                    <b-col>
+                      <b-button id="selectbutton" 
+                                v-on:click="name.pressingStatus = !name.pressingStatus" 
+                                size="sm" pill variant="outline-dark">
+                        <i v-bind:class="[{ 'green' : name.pressingStatus}, 'material-icons']">{{ name.filename }}</i>
+                      </b-button>
+                    </b-col>
+                  </div>
+                </b-row>
+              </ul>
+      </div>
+      <!--upload file-->
       <div>
         <b-row align-h="center">  
           <b-form-select v-model="selectedType" :options="typeOptions" class="mt-3"></b-form-select>
@@ -42,6 +64,7 @@ import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue'
 Vue.use(BootstrapVue, BootstrapVueIcons)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import storageList from './storage/storageList' //database information input
 import axios from 'axios'
 Vue.use(axios)
 
@@ -50,6 +73,7 @@ export default {
   data () {
     return {
       files: [],
+      dbArray: [], //store data from database
       typeOptions: [
         { value: null, text: 'please select file format you upload'},
         { value: 'video', text: 'video file format'},
@@ -60,6 +84,21 @@ export default {
       selectedType: null,
       status: null
     }
+  },
+  created () {
+    //here we load the filename within storageList onto dbArray
+    let count = storageList.length;
+    while (count--) {
+      this.dbArray.push(storageList[count]) //instead of uploading specific parameter, we upload the whole
+      /*
+      this.dbArray.push(storageList[count].id)
+      this.dbArray.push(storageList[count].filename)
+      this.dbArray.push(storageList[count].pressingStatus)
+      */
+    }
+
+    //const buttonsPressed = document.querySelectorAll("#selectbutton");
+    //buttonsPressed.forEach(buttonPressing => buttonPressing.addEventListener('click'))
   },
   methods: {
     addFiles(){
@@ -131,5 +170,8 @@ span.remove-file{
 }
 div.file-listing{
   width: 200px;
+}
+.green {
+  color: green;
 }
 </style>

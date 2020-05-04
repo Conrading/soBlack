@@ -22,31 +22,23 @@
     </div-->
 
     <b-container class="mt-5">
-        <!--div>
-            <b-row class="justify-content-md-center">
-          <label for="generalPlay">
-            Play All Together
-          </label>
-            </b-row>
-            <b-row class="justify-content-md-center">
-          <b-button @click="generalPlay" :pressed.sync="playStatus" variant="outline-primary">Play All</b-button>
-          <b-button @click="stopPlay" :pressed.sync="playStatus" variant="outline-primary">Stop All</b-button>
-            </b-row>
-            <b-row class="mt-2 justify-content-md-center">
-              <p>Status: <strong>{{ playStatus }}</strong></p>
-            </b-row>
-        </div--> 
-        <div :style="{backgroundImage: `url(${lightimage})`}"> <!--upload image here-->
+        <!--div :style="{backgroundImage: `url(${lightimage})`}"--> <!--upload image here-->
               <b-row class="justify-content-md-center">
-          <label class="text-white" for="parameterSetting">
+          <label for="parameterSetting">
             ---- Choose the File you want to set ----
           </label>
               </b-row>
               <ul id="autobutton">
                 <b-row align-h="center">
-                  <li v-for="name in dbArray" :key='name'>
-                    <b-col><b-button id="selectbutton" @click="selectbutton" size="sm" pill variant="outline-light">{{ name }}</b-button></b-col>
-                  </li>
+                  <div v-for="name in dbArray" :key='name.id'>
+                    <b-col>
+                      <b-button id="selectbutton" 
+                                v-on:click="name.pressingStatus = !name.pressingStatus" 
+                                size="sm" pill variant="outline-dark">
+                        <i v-bind:class="[{ 'green' : name.pressingStatus}, 'material-icons']">{{ name.filename }}</i>
+                      </b-button>
+                    </b-col>
+                  </div>
                 </b-row>
               </ul>
               <b-row class="justify-content-md-center">
@@ -54,7 +46,7 @@
           <b-button id="rightVideo" @click="rightVideo" :pressed.sync="rightVideobutton" pill variant="outline-success">Right Video</b-button>
           <b-button id="sound01" @click="sound01" :pressed.sync="sound01button" pill variant="outline-secondary">First Sound</b-button-->
               </b-row>
-        </div>
+        <!--/div-->
 
         <div class="mt-4">
             <b-row align-h="center">
@@ -117,14 +109,14 @@ import storageList from './storage/storageList' //database information input
 import axios from 'axios'
 Vue.use(axios)
 //import $ from 'jquery'
-import lightimage from './storage/1.jpg' //background image
+//import lightimage from './storage/1.jpg' //background image
 
 
 export default {
     name: "PlayerParameter",
     data () {
       return {
-        lightimage, //image parameter
+        //lightimage, //image parameter
         dbArray: [], //store data from database
         playStatus: null,
         settingWhich: null, //the status showing bottom
@@ -138,18 +130,10 @@ export default {
       //here we load the filename within storageList onto dbArray
       let count = storageList.length;
       while (count--) {
-        this.dbArray.push(storageList[count].filename)
+        this.dbArray.push(storageList[count])
       }
     },
-    mounted () {    
-      
-    },
     methods: {
-      selectbutton () {
-        //have not yet finished !!!!!!!!!!!!!
-        document.getElementById("selectbutton").style.color = "red";
-        this.settingWhich = `You are setting ${name}`;
-      },
       //so far, the below is useless
       sound01 () {
         //verify whether the input is correct
@@ -333,5 +317,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;  
+}
+.green {
+  color: green;
 }
 </style>

@@ -25,7 +25,7 @@
                 class="video-js vjs-custom-skin vjs-16-9"
                 controls autoplay loop preload="auto"
                 data-setup='{}'>
-                <!--ever use :ref="`videoPlayer${index}`" once-->
+                <!--don't know whether :ref="`videoPlayer${index}`" can be different-->
                   <source v-bind:src="require(`./storage/${video}`)" type="video/mp4">
                 </video>
               </li>

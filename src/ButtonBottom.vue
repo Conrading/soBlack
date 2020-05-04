@@ -28,7 +28,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 
 export default {
-  name: 'Project',
+  name: 'ButtonBottom',
   data () {
     return {
     }

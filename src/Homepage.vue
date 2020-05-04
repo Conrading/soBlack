@@ -26,7 +26,7 @@
                 <b-col cols="4"><SearchDisplay></SearchDisplay></b-col>
             </b-row>
     </div>
-            <b-row><Main></Main></b-row>
+            <b-row><ButtonBottom></ButtonBottom></b-row>
         </div>
         <b-row class="mt-5 justify-content-md-center">
             <h6>2020 Silex Oasis. All Rights Reserved</h6>
@@ -41,7 +41,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import SearchDisplay from './SearchDisplay'
 import FilePlayer from './FilePlayer'
-import Main from './Main'
+import ButtonBottom from './ButtonBottom'
 import lightimage from './storage/3.jpg' //background image
 
 export default {
@@ -49,7 +49,7 @@ export default {
     components: {
         SearchDisplay,
         FilePlayer,
-        Main
+        ButtonBottom
     },
     data () {
         return {
