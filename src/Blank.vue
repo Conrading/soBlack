@@ -1,9 +1,11 @@
 <template>
     <b-container fluid="sm">
         <div class="mt-5">
-            <h7>Welcome to participate</h7>
-            <br>
-            <h7>Please offer your opinion and leave your individual/firm information</h7>
+            <div class="tagetText">
+                <h7 >Welcome to participate</h7>
+                <br>
+                <h7>Please offer your opinion and leave your individual/firm information</h7>
+            </div>
             <div class="mt-3">
                 <b-row align-h="center">
                     <b-col align-self="center" md="2">Lawyer Name</b-col>
@@ -71,3 +73,13 @@ export default {
   }
 }
 </script>
+<style>
+.tagetText {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px; 
+}
+</style>

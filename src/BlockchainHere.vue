@@ -110,9 +110,9 @@ export default {
         //blockchain fee
         processFee: '2',
         amount: 0,
-                        agreeButton: null,
-                        inputName: null,
-                        description: '',
+        agreeButton: null,
+        inputName: null,
+        description: '',
     }
   },
   beforeMount() {
