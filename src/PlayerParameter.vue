@@ -59,10 +59,11 @@
             <b-row align-h="center">
                 <b-col align-self="center" md="2">Input Volume</b-col>
                 <b-col md="3">
-                  <form class="range-field w-75">
+                  <b-form-input type="range" min="0" max="10"></b-form-input>
+                  <!--form class="range-field w-75">
                   <input id="soundVolume" 
                     class="border-0" type="range" min="0" max="10" /></form>
-                    <span class="font-weight-bold text-primary"></span>
+                    <span class="font-weight-bold text-primary"></span-->
                 </b-col>
             </b-row>
         </div>

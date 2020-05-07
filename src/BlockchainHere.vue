@@ -1,79 +1,332 @@
 <template>
   <div class="container">
     <div class="declaration">
-      <h5>You decide your minimum share, payment method, we guarantee immutable record, so you can have your share</h5>
+      <h5>Share your support</h5>
+    </div>
+        <!--Explanation-->
+    <div>
+        <b-card-group deck>
+            <b-card
+            header="Support Artsits"
+            header-tag="header"
+            title="Directly Support">
+                <b-card-text>
+                    You can sned money to support artists directly, you might thus get coupon for music purchase, or live gig ticket from them
+                </b-card-text>
+                <template v-slot:footer>
+                    <b-button href="#" variant="outline-dark">More Detail</b-button>
+                </template>
+            </b-card>
+            <b-card
+            header="Find Partner"
+            header-tag="header"
+            title="Collaboration">
+                <b-card-text>
+                    You can share with your music partner, continue greater work all together
+                </b-card-text>
+                <template v-slot:footer>
+                    <b-button href="#" variant="outline-dark">More Detail</b-button>
+                </template>
+            </b-card>
+            <b-card
+            header="Invest Potential"
+            header-tag="header"
+            title="Investment">
+                <b-card-text>
+                    You might have found some talent work or artists, and you want to invest them  
+                </b-card-text>
+                <template v-slot:footer>
+                    <b-button href="#" variant="outline-dark">More Detail</b-button>
+                </template>
+            </b-card>
+        </b-card-group>
     </div>
 
 
     <div class="blockInformation">
-        <!--minimum share setting-->
+        <!--toggle blockchain--> 
         <div>
-            <b-row align-h="center" >
-                <b-col align-self="center" md="2">Input Minimum Share</b-col>
-                <b-col md="3"><b-form-input
-            id="minimumShare"
-            v-model="minimumShare"
-            placeholder="Input Integer"
-          />
-                </b-col>
-            </b-row>
-        </div>
-        <div>
-            <b-row align-h="center" class="mt-3 my-1">
-                <b-col align-self="center">
-                    <b-button @click="minimumShareButton" :pressed.sync="minimumShareNumber" variant="outline-secondary">Set Desired Share</b-button>
-                </b-col>
-            </b-row>
-            <b-row class="mt-2 justify-content-md-center">
-                <p>Status: <strong>You have set {{ minimumShareNumber }} % minimum share</strong></p>
-            </b-row>
-        </div>
-        <!--minimum share setting-->
-
-        <!--share method setting-->
-        <div>
-            <h5 class="mt-3">Choose the share method you agree</h5>
             <b-row class="justify-content-md-center">
-                <b-col lg="2">
-          <b-button ref="averageShare" :pressed.sync="averageShareMethod" variant="outline-primary">Average Share</b-button>
+                <h5>Whether you use blockchain</h5>
+            </b-row> 
+            <b-row class="mt-2 justify-content-md-center">   
+                <b-col align-self="center" md="2">
+                    <b-button 
+                    @click="blockchainToggle" 
+                    :pressed.sync="blockchainDeicision" 
+                    variant="outline-primary">
+                    Press to toggle
+                    </b-button>
                 </b-col>
-                <b-col lg="2">
-          <b-button ref="randomShare" :pressed.sync="randomShareMethod" variant="outline-primary">Random Share</b-button>
-                </b-col>
+                <b-col align-self="center" md="3"><strong>{{ optAnswer }}</strong></b-col>
             </b-row>
-            <b-row class="mt-2 justify-content-md-center">now the average share is {{ averageShareMethod }}, and the random share is {{ randomShareMethod }}</b-row>
+            <b-row class="justify-content-md-center">
+                <b-nav small>
+                    <b-nav-item href="https://en.wikipedia.org/wiki/Blockchain" variant="light">What is Blockchain?</b-nav-item>
+                    <b-nav-item href="https://dzone.com/articles/a-guide-to-blockchain-immutability-and-chief-chall" variant="light">Why I use Blockchain?</b-nav-item>
+                    <b-nav-item href="https://www.youtube.com/watch?v=ZIGUC9JAAw8" variant="light">How to use Blockchain here?</b-nav-item>
+                </b-nav>
+            </b-row>
         </div>   
-        <!--share method setting--> 
+        <!--Below using tab--> 
+        <div>
+            <b-tabs content-class="mt-3">
+            <!--information before-->
+                <b-tab title="Information before you send" active>
+                    <div>
+                        <b-row align-h="center" >
+                            <b-col align-self="center" md="2">Your Name</b-col>
+                            <b-col md="3"><b-form-input
+                        id="offeringGuy"
+                        v-model="offeringGuy"/>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <span v-if="blockchainDeicision == true ">
+                        <b-row align-h="center" >
+                            <b-col align-self="center" md="2">Your blockchain address</b-col>
+                            <b-col md="3"><b-form-input
+                        id="offeringGuyAddress"
+                        v-model="offeringGuyAddress"/>
+                            </b-col>
+                        </b-row>
+                    </span>
+                    <div>
+                        <b-row align-h="center" >
+                            <b-col align-self="center" md="2">Your Phone</b-col>
+                            <b-col md="3"><b-form-input
+                        id="phone"
+                        v-model="phone"/>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <div>
+                        <b-row align-h="center" >
+                            <b-col align-self="center" md="2">Your E-Mail</b-col>
+                            <b-col md="3"><b-form-input
+                        id="email"
+                        v-model="email"/>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <div>
+                        <b-row class="mt-4 justify-content-md-center">
+                            <b-col align-self="center" md="1"><label class="mr-sm-2" for="inline-form-custom-select-pref">Currency</label></b-col>
+                            <b-col align-self="center" md="3">
+                                <b-form-select
+                                id="inline-form-custom-select-pref"
+                                class="mb-2 mr-sm-2 mb-sm-0"
+                                v-model="currencyChoose"
+                                :options="currency"
+                                :value="null"
+                                ></b-form-select>
+                            </b-col>
+                            <b-col align-self="center" md="2">
+                                <b-form-input
+                                id="amountMoney"
+                                placeholder="input a number"
+                                v-model="amountMoney"/>
+                            </b-col>
+                            <b-col align-self="center" md="2">
+                                You decide to send: <strong>{{ currencyChoose + amountMoney }}</strong>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <div>
+                        <b-row class="mt-4 justify-content-md-center">
+                            <b-col align-self="center" md="3"><label class="mr-sm-2" for="inline-form-custom-select-pref">Select your intention</label></b-col>
+                            <b-col align-self="center" md="3">
+                                <b-form-select
+                                id="inline-form-custom-select-pref"
+                                class="mb-2 mr-sm-2 mb-sm-0"
+                                v-model="itemChoose"
+                                :options="itemMoney"
+                                :value="null"
+                                ></b-form-select>
+                            </b-col>
+                            <b-col align-self="center" md="3">
+                                You choose to: <strong>{{ itemChoose }}</strong>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <div>
+                        <b-row class="mt-4 justify-content-md-center">
+                            <b-col align-self="center" md="3">
+                                <b-form-input v-model="artistNumber" placeholder="Enter Artist ID number"></b-form-input>
+                            </b-col>
+                            <b-col align-self="center" md="2">
+                                You choose Artist: <strong>{{ artistChoose }}</strong>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <div class="mt-4">
+                        <b-row class="justify-content-md-center"><h6>Select the date of transaction</h6></b-row>
+                        <b-row class="justify-content-md-center"><b-calendar v-model="transactionDate" :min="min" :max="max" locale="en"></b-calendar></b-row>
+                    </div>
+                    <div>
+                        <b-row class="my-3">
+                            <b-col>Remark:   <br>
+                    <b-form-textarea
+                        class="Description"
+                        v-model="description"
+                        rows="3" />
+                            </b-col>
+                        </b-row>
+                    </div>
+        <!--the before button setting-->
+                    <div>
+                        <b-row align-h="center" class="mt-3 my-1">
+                            <b-col align-self="center">
+                                <b-button @click="transactionButton" :pressed.sync="transactionStatus" variant="outline-secondary">Decide to send</b-button>
+                            </b-col>
+                        </b-row>
+                        <b-row class="mt-2 justify-content-md-center">
+                            <p><strong>{{ transactionStatus }}</strong></p>
+                        </b-row>
+                    </div>
+                </b-tab>
+
+            <!--information after-->
+                <b-tab title="Information after you send" active>
+                    <div>
+                        <b-row align-h="center" >
+                            <b-col align-self="center" md="2">Your Name</b-col>
+                            <b-col md="3"><b-form-input
+                        id="offeringGuy"
+                        v-model="offeringGuy"/>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <span v-if="blockchainDeicision == true ">
+                        <b-row align-h="center" >
+                            <b-col align-self="center" md="2">Your blockchain address</b-col>
+                            <b-col md="3"><b-form-input
+                        id="offeringGuyAddress"
+                        v-model="offeringGuyAddress"/>
+                            </b-col>
+                        </b-row>
+                    </span>
+                    <div>
+                        <b-row align-h="center" >
+                            <b-col align-self="center" md="2">Your Phone</b-col>
+                            <b-col md="3"><b-form-input
+                        id="phone"
+                        v-model="phone"/>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <div>
+                        <b-row align-h="center" >
+                            <b-col align-self="center" md="2">Your E-Mail</b-col>
+                            <b-col md="3"><b-form-input
+                        id="email"
+                        v-model="email"/>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <div>
+                        <b-row class="mt-4 justify-content-md-center">
+                            <b-col align-self="center" md="1"><label class="mr-sm-2" for="inline-form-custom-select-pref">Currency</label></b-col>
+                            <b-col align-self="center" md="3">
+                                <b-form-select
+                                id="inline-form-custom-select-pref"
+                                class="mb-2 mr-sm-2 mb-sm-0"
+                                v-model="currencyChoose"
+                                :options="currency"
+                                :value="null"
+                                ></b-form-select>
+                            </b-col>
+                            <b-col align-self="center" md="2">
+                                <b-form-input
+                                id="amountMoney"
+                                placeholder="input a number"
+                                v-model="amountMoney"/>
+                            </b-col>
+                            <b-col align-self="center" md="2">
+                                You have sent: <strong>{{ currencyChoose + amountMoney }}</strong>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <div>
+                        <b-row class="mt-4 justify-content-md-center">
+                            <b-col align-self="center" md="3"><label class="mr-sm-2" for="inline-form-custom-select-pref">Select your intention</label></b-col>
+                            <b-col align-self="center" md="3">
+                                <b-form-select
+                                id="inline-form-custom-select-pref"
+                                class="mb-2 mr-sm-2 mb-sm-0"
+                                v-model="itemChoose"
+                                :options="itemMoney"
+                                :value="null"
+                                ></b-form-select>
+                            </b-col>
+                            <b-col align-self="center" md="3">
+                                You choose to: <strong>{{ itemChoose }}</strong>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <div>
+                        <b-row class="mt-4 justify-content-md-center">
+                            <b-col align-self="center" md="3">
+                                <b-form-input v-model="artistNumber" placeholder="Enter Artist ID number"></b-form-input>
+                            </b-col>
+                            <b-col align-self="center" md="2">
+                                Artist you chose: <strong>{{ artistChoose }}</strong>
+                            </b-col>
+                        </b-row>
+                    </div>
+                    <div class="mt-4">
+                        <b-row class="justify-content-md-center"><h6>Select the date of transaction</h6></b-row>
+                        <b-row class="justify-content-md-center"><b-calendar v-model="transactionDate" :min="min" :max="max" locale="en"></b-calendar></b-row>
+                    </div>
+                    <div>
+                        <b-row class="my-3">
+                            <b-col>Remark:   <br>
+                    <b-form-textarea
+                        class="Description"
+                        v-model="description"
+                        rows="3" />
+                            </b-col>
+                        </b-row>
+                    </div>
+        <!--the after button setting-->
+                    <div>
+                        <b-row align-h="center" class="mt-3 my-1">
+                            <b-col align-self="center">
+                                <b-button @click="transactionButton" :pressed.sync="transactionStatus" variant="outline-secondary">Confirm transaction</b-button>
+                            </b-col>
+                        </b-row>
+                        <b-row class="mt-2 justify-content-md-center">
+                            <p><strong>{{ transactionStatus }}</strong></p>
+                        </b-row>
+                    </div>
+                </b-tab>
+
         <!--other information-->
-        <div>
-            <h5 class="mt-4 my-1">----------------------------------</h5>
-            <b-row class="mt-4 my-1">
-                <b-col>Bank Account:  <b-form-input
-            id="inputName"
-            v-model="inputName"
-            placeholder="Input Account"
-          />
-                </b-col>
-            </b-row>
-        </div>
-        <div>
-            <b-row class="my-1">
-                <b-col>Remark:   <br>
-          <b-form-textarea
-            class="Description"
-            v-model="description"
-            rows="3"
-          />
-                </b-col>
-            </b-row>
-        </div>
-        <!--other information-->
-        <!--press button and launch block-->
-        <div>
-          <b-button class="mt-2" variant="outline-secondary" @click="agreeParticipate" :pressed.sync="agreeButton">
-            create final block and send to blockchain
-          </b-button>
-          <p class="mt-2">Agreement Status: <strong>{{ agreeButton }}</strong></p>
+                <!--explain the information users input-->
+                <b-tab title="Explanation">
+                    <b-row>
+                    <b-card
+                        overlay
+                        img-src="./storage/5.jpg"
+                        img-alt="Card Image"
+                        text-variant="white"
+                        title="We don't interven your support">
+                        <b-card-text>We offer platform that you can send surpport directly to artists</b-card-text>
+                    </b-card>
+                    </b-row>
+                    <b-row>
+                    <b-card
+                        overlay
+                        img-src="./storage/1.jpg"
+                        img-alt="Card Image"
+                        text-variant="white"
+                        title="It is Decentralized money distribution">
+                        <b-card-text>You send the money directly to artists, that is why you need to leave your contact, because artists will send you his bank account</b-card-text>
+                        <b-card-text>Blockchain here helps to record money transferring</b-card-text>
+                    </b-card>
+                    </b-row>
+                </b-tab>
+            </b-tabs>
         </div>
 
     </div>
@@ -89,6 +342,7 @@ Vue.use(BootstrapVueIcons)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import storageList from './storage/storageList' //database information input
 import web3 from '../participantContract/web3'
 import participantInstance from '../participantContract/participantInstance'
 import participantBox from '../participantContract/participantBox'
@@ -99,28 +353,109 @@ export default {
     
   },
   data () {
+      //below is for calendar
+      const now = new Date()
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+      // 15th two months prior
+      const minDate = new Date(today)
+      minDate.setMonth(minDate.getMonth() - 2)
+      minDate.setDate(15)
+      // 15th in two months
+      const maxDate = new Date(today)
+      maxDate.setMonth(maxDate.getMonth() + 2)
+      maxDate.setDate(15)
+      //calendar till here
     return {
+        //decision to blockchain usage
+        blockchainDeicision: true, //to show whether blockchain is selected
+        optAnswer: null, //toggle result whether blockchain is adopted
+        //input offering information
+        offeringGuy: null, //used to be minimumShare
+        offeringGuyAddress: null, //if user uses blockchain
+        phone: null,
+        email: null,
+        currency: [
+            { value: null, text: 'please select currency'},
+            { value: 'USD ', text: 'US Dollar'},
+            { value: 'Euro ', text: 'Euro'},
+            { value: 'NTD ', text: 'New Taiwan Dollar'},
+            { value: 'Peso ', text: 'Mexico Peso'},
+        ],
+        currencyChoose: null, //showing currecy type
+        amountMoney: "", //showing amount of money
+        itemChoose: null,
+        //here I use weird term, but I actually mean the intention
+        itemMoney: [
+            { value: null, text: 'please select'},
+            { value: 'Support Artist', text: 'Support Artist'},
+            { value: 'Collaboration', text: 'Collaboration'},
+            { value: 'investment', text: 'investment'},
+        ], 
+        //artist choosing
+        artistNumber: null,
+        artistChoose: null,
+        //transaction date
+        transactionDate: '', 
+        min: minDate,
+        max: maxDate,
+        description: '',
+
+        transactionStatus: null, //showing transaction status, triggered by function "transactionButton"
+        dbArray: [], //upload database here to generate artist name
+
+
         //share number parameter
         decidedShare: null,
-        minimumShare: null,
-        minimumShareNumber: null,
-        //share method parameter
-        averageShareMethod: true,
-        randomShareMethod: true,
+        
         //blockchain fee
         processFee: '2',
         amount: 0,
-        agreeButton: null,
         inputName: null,
-        description: '',
     }
   },
+    created () {
+        //here we load the filename within storageList onto dbArray
+        let count = storageList.length;
+        while (count--) {
+        this.dbArray.push(storageList[count])
+        }
+    },
   beforeMount() {
     participantBox.methods.returnAllParticipants().call().then((participants) => {
       this.amount = participants.length;
     });
   },
   methods: {
+    blockchainToggle() {
+        if (this.blockchainDeicision == false) {
+            this.optAnswer = "No, I DON'T want to use blockchain"
+        }
+        if (this.blockchainDeicision == true) {
+            this.optAnswer = "Yes, I confirm to use blockchain"
+        }
+    },
+    transactionButton () {
+        if(this.email == null) {
+          alert('Please at least leave E-mail');
+          return;
+        }
+        if (this.currency == null) {
+          alert('Please choose currency you use');
+          return;
+        }
+        if (Number(this.minimumShare) < 0 || Number(this.minimumShare) == 0 || this.amountMoney == null) {
+          alert ('Please tell artist how much money you send')
+          return;
+        }
+        if (this.artistChoose == null) {
+          alert ('Please select one artist')
+          return;
+        }
+        this.transactionStatus = "You have left information in blockchain"
+    },
+
+
+
       minimumShareButton() {
         if(Number(this.minimumShare) < 0 || Number(this.minimumShare) > 100) {
           alert('please input minimum share a positive number, or less than 100');
@@ -143,6 +478,7 @@ export default {
         })
     },
     agreeParticipate() {
+        // both 'averageShareMethod' and 'randomShareMethod' have been changed to 'noAnswer' and 'yesAnswer'
         if((this.averageShareMethod) == false && (this.randomShareMethod) == false) {
           alert("please at least select one payment method!");
           this.agreeButton = null;
@@ -182,7 +518,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px; 
+  margin-top: 30px; 
+  margin-bottom: 30px;
 }
 .blockInformation {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
