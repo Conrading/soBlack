@@ -6,7 +6,7 @@
           <!--This is video player for two column-->
           <b-row class="justify-content-md-center">
             <b-col>
-              <li v-for="(video, index) in videoArray" :key='(video, index)'>
+              <div v-for="(video, index) in videoArray" :key='(video, index)'>
                 <video 
                 v-if=" index % 2 == 0 " 
                 ref="videoPlayer" 
@@ -15,10 +15,10 @@
                 data-setup='{}'>
                   <source v-bind:src="require(`./storage/${video}`)" type="video/mp4">
                 </video>
-              </li>
+              </div>
             </b-col>
             <b-col>
-              <li v-for="(video, index) in videoArray" :key='(video, index)' >
+              <div v-for="(video, index) in videoArray" :key='(video, index)' >
                 <video 
                 v-if=" (index+1) % 2 == 0 "
                 ref="videoPlayer"
@@ -28,20 +28,20 @@
                 <!--don't know whether :ref="`videoPlayer${index}`" can be different-->
                   <source v-bind:src="require(`./storage/${video}`)" type="video/mp4">
                 </video>
-              </li>
+              </div>
             </b-col>
           </b-row>
           <!--This is audio player for two column-->
           <b-row>
             <b-col>
-              <li v-for="audio in audioArray" :key='audio'>
+              <div v-for="audio in audioArray" :key='audio'>
                 <audio 
                 id="trackSound"
                 ref="trackSound"
                 controls autoplay preload="auto">
                   <source v-bind:src="require(`./storage/${audio}`)">
                 </audio>
-              </li>
+              </div>
             </b-col>
           </b-row>
         </ul>

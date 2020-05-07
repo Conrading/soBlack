@@ -19,8 +19,7 @@
 
                 :data-key="'id'"
                 :data-sources="items"
-                :data-component="itemComponent"
-                    />
+                :data-component="itemComponent"/>
             </div>
         </div>
     </b-container>
@@ -84,11 +83,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px; 
+  margin-top: 10px; 
 }
 .list {
   width: 100%;
-  height: 500px;
+  height: 400px;
   border: 2px solid;
   border-radius: 3px;
   overflow-y: auto;
