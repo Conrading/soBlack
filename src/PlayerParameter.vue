@@ -22,7 +22,7 @@
     </div-->
 
     <b-container class="mt-5">
-        <!--div :style="{backgroundImage: `url(${lightimage})`}"--> <!--upload image here-->
+        <!--div :style="{backgroundImage: `url(${image2})`}"--> <!--upload image here-->
               <b-row class="justify-content-md-center">
           <label for="parameterSetting">
             ---- Choose the File you want to set ----
@@ -88,7 +88,7 @@
               </b-row>
         </div> 
   
-  
+        <!--/div--> <!--background image-->
       </b-container>
   </div>  
 
@@ -110,14 +110,14 @@ import storageList from './storage/storageList' //database information input
 import axios from 'axios'
 Vue.use(axios)
 //import $ from 'jquery'
-//import lightimage from './storage/1.jpg' //background image
+//import image2 from './storage/IMG_4.jpg' //background image
 
 
 export default {
     name: "PlayerParameter",
     data () {
       return {
-        //lightimage, //image parameter
+        //image2, //image parameter
         dbArray: [], //store data from database
         playStatus: null,
         settingWhich: null, //the status showing bottom

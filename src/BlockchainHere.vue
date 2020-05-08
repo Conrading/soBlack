@@ -9,34 +9,37 @@
             <b-card
             header="Support Artsits"
             header-tag="header"
+            border-variant="info"
             title="Directly Support">
                 <b-card-text>
                     You can sned money to support artists directly, you might thus get coupon for music purchase, or live gig ticket from them
                 </b-card-text>
                 <template v-slot:footer>
-                    <b-button href="#" variant="outline-dark">More Detail</b-button>
+                    <b-button href="https://31withnowhere.wixsite.com/notionoasis/project05" variant="outline-dark">More Detail</b-button>
                 </template>
             </b-card>
             <b-card
             header="Find Partner"
             header-tag="header"
+            border-variant="success"
             title="Collaboration">
                 <b-card-text>
                     You can share with your music partner, continue greater work all together
                 </b-card-text>
                 <template v-slot:footer>
-                    <b-button href="#" variant="outline-dark">More Detail</b-button>
+                    <b-button href="https://31withnowhere.wixsite.com/notionoasis/project06" variant="outline-dark">More Detail</b-button>
                 </template>
             </b-card>
             <b-card
             header="Invest Potential"
             header-tag="header"
+            border-variant="secondary"
             title="Investment">
                 <b-card-text>
                     You might have found some talent work or artists, and you want to invest them  
                 </b-card-text>
                 <template v-slot:footer>
-                    <b-button href="#" variant="outline-dark">More Detail</b-button>
+                    <b-button href="https://31withnowhere.wixsite.com/notionoasis/project07" variant="outline-dark">More Detail</b-button>
                 </template>
             </b-card>
         </b-card-group>
@@ -45,9 +48,11 @@
 
     <div class="blockInformation">
         <!--toggle blockchain--> 
+            <div :style="{backgroundImage: `url(${image1})`}">
         <div>
+            <b-row ><h6></h6></b-row> 
             <b-row class="justify-content-md-center">
-                <h5>Whether you use blockchain</h5>
+                <h5>Toggle blockchain</h5>
             </b-row> 
             <b-row class="mt-2 justify-content-md-center">   
                 <b-col align-self="center" md="2">
@@ -68,8 +73,12 @@
                 </b-nav>
             </b-row>
         </div>   
+            </div> <!--background pic range-->
         <!--Below using tab--> 
-        <div>
+        <div class="mt-2">
+            <b-row class="justify-content-md-center">
+                <h5>Transaction</h5>
+            </b-row> 
             <b-tabs content-class="mt-3">
             <!--information before-->
                 <b-tab title="Information before you send" active>
@@ -342,6 +351,8 @@ Vue.use(BootstrapVueIcons)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import image1 from './storage/6.jpg'
+
 import storageList from './storage/storageList' //database information input
 import web3 from '../participantContract/web3'
 import participantInstance from '../participantContract/participantInstance'
@@ -366,6 +377,7 @@ export default {
       maxDate.setDate(15)
       //calendar till here
     return {
+        image1, //background pic
         //decision to blockchain usage
         blockchainDeicision: true, //to show whether blockchain is selected
         optAnswer: null, //toggle result whether blockchain is adopted
@@ -413,13 +425,13 @@ export default {
         inputName: null,
     }
   },
-    created () {
-        //here we load the filename within storageList onto dbArray
-        let count = storageList.length;
-        while (count--) {
-        this.dbArray.push(storageList[count])
-        }
-    },
+  created () {
+      //here we load the filename within storageList onto dbArray
+      let count = storageList.length;
+      while (count--) {
+      this.dbArray.push(storageList[count])
+      }
+  },
   beforeMount() {
     participantBox.methods.returnAllParticipants().call().then((participants) => {
       this.amount = participants.length;

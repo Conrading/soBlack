@@ -2,7 +2,7 @@
     <b-container>
         <div>
             <div class="tagetProject">
-                <h6 class="text-white">Search Result</h6>
+                <h6>Search Result</h6>
             </div>
         <!--virtual-list :size="40" :remain="8">
             <div v-for="i in 20" :key="i">
@@ -12,7 +12,7 @@
             </div>
         </virtual-list-->
             <div v-show="isShowView">
-                <virtual-list class="text-white list scroll-touch"
+                <virtual-list class="list scroll-touch"
                 :size="10"
                 :keeps="30" 
                 :item-class="'list-item-fixed'"

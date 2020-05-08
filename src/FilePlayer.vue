@@ -56,16 +56,16 @@
     <!--control button /-->
         <div>
             <b-row class="justify-content-md-center">
-          <label class="font-weight-bold text-white" for="generalPlay">
+          <label class="font-weight-bold" for="generalPlay">
             Play All Together
           </label>
             </b-row>
             <b-row class="justify-content-md-center">
-          <b-button @click="generalPlay" :pressed.sync="playStatus" variant="outline-light">Play All</b-button>
-          <b-button @click="stopPlay" :pressed.sync="playStatus" variant="outline-light">Stop All</b-button>
+          <b-button @click="generalPlay" :pressed.sync="playStatus" variant="outline-dark">Play All</b-button>
+          <b-button @click="stopPlay" :pressed.sync="playStatus" variant="outline-dark">Stop All</b-button>
             </b-row>
             <b-row class="mt-2 justify-content-md-center">
-              <p class="text-white">Status: <strong class="text-white">{{ playStatus }}</strong></p>
+              <p>Status: <strong>{{ playStatus }}</strong></p> <!--if white text {class="text-white"}-->
             </b-row>
         </div>
     <!--/div-->

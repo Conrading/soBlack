@@ -1,15 +1,11 @@
 <template>
     <div class="container">
         <div class="tagetProject">
+            <b-row align-h="start">
+                <b-col md="3"><h3>Silex | Oasis</h3></b-col>
+            </b-row>
             <b-row>
-                <b-col align-self="center">
-                    <h4>Silex | Oasis</h4>
-                </b-col>
-                <b-col align-self="center">
-                    <input type="text" v-model="search" :pressed.sync="inputstatus" placeholder="New Search">
-                    <b-button v-on:click="searchTask" variant="light" size="sm">search</b-button>
-                </b-col>
-                <b-col>
+                <b-col md="3" align-self="center">
                     <md-button id="home" v-on:click="home" :pressed.sync="homeClick" class="md-icon-button">
                         <md-icon>H</md-icon>
                     </md-button>
@@ -19,8 +15,18 @@
                     <md-button id="copyRight" v-on:click="copyRight" :pressed.sync="copyRightClick" class="md-icon-button">
                         <md-icon>©</md-icon>
                     </md-button>
+                    <b-avatar icon="people-fill"></b-avatar>
                     <!--a><router-link to="/BlockchainHere"><b-button size="sm" variant="outline-dark"> Blockchain </b-button></router-link></a>
                     <a><router-link to="/Blank"><b-button size="sm" variant="outline-dark"> Copy Right Claim </b-button></router-link></a-->
+                </b-col>
+                <b-col md="4" align-self="center">
+                    <input type="text" v-model="search" :pressed.sync="inputstatus" placeholder="New Search">
+                    <b-button v-on:click="searchTask" variant="light" size="sm">search</b-button>
+                </b-col>
+                <b-col md="2"></b-col>
+                <b-col cols="3">
+                    <b-badge variant="light">sign up</b-badge>
+                    <b-badge variant="light">log in</b-badge>
                 </b-col>
             </b-row>
         </div>
@@ -81,7 +87,7 @@ import FilePlayer from './FilePlayer'
 import ButtonBottom from './ButtonBottom'
 import BlockchainHere from './BlockchainHere'
 import Blank from './Blank'
-import lightimage from './storage/3.jpg' //background image
+import lightimage from './storage/10.jpg' //background image
 
 export default {
     name: 'Homepage',
