@@ -75,16 +75,18 @@
         </div>   
             </div> <!--background pic range-->
         <!--Below using tab--> 
-        <div class="mt-2">
+        <div class="mt-5">
             <b-row class="justify-content-md-center">
-                <h5>Transaction</h5>
+                <h5><strong>Transaction Record</strong></h5>
+                <b-badge href="https://31withnowhere.wixsite.com/notionoasis/project09" variant="light">What it this</b-badge>
             </b-row> 
             <b-tabs content-class="mt-3">
+            <div :style="{backgroundImage: `url(${image2})`}">
             <!--information before-->
                 <b-tab title="Information before you send" active>
                     <div>
                         <b-row align-h="center" >
-                            <b-col align-self="center" md="2">Your Name</b-col>
+                            <b-col align-self="center" md="2" class="text-default"><a class="text-info">Your Name</a></b-col>
                             <b-col md="3"><b-form-input
                         id="offeringGuy"
                         v-model="offeringGuy"/>
@@ -93,7 +95,7 @@
                     </div>
                     <span v-if="blockchainDeicision == true ">
                         <b-row align-h="center" >
-                            <b-col align-self="center" md="2">Your blockchain address</b-col>
+                            <b-col align-self="center" md="2" class="text-default"><a class="text-info">Your blockchain address</a></b-col>
                             <b-col md="3"><b-form-input
                         id="offeringGuyAddress"
                         v-model="offeringGuyAddress"/>
@@ -102,7 +104,7 @@
                     </span>
                     <div>
                         <b-row align-h="center" >
-                            <b-col align-self="center" md="2">Your Phone</b-col>
+                            <b-col align-self="center" md="2"><a class="text-info">Your Phone</a></b-col>
                             <b-col md="3"><b-form-input
                         id="phone"
                         v-model="phone"/>
@@ -111,7 +113,7 @@
                     </div>
                     <div>
                         <b-row align-h="center" >
-                            <b-col align-self="center" md="2">Your E-Mail</b-col>
+                            <b-col align-self="center" md="2"><a class="text-info"> Your E-Mail </a></b-col>
                             <b-col md="3"><b-form-input
                         id="email"
                         v-model="email"/>
@@ -120,7 +122,7 @@
                     </div>
                     <div>
                         <b-row class="mt-4 justify-content-md-center">
-                            <b-col align-self="center" md="1"><label class="mr-sm-2" for="inline-form-custom-select-pref">Currency</label></b-col>
+                            <b-col align-self="center" md="1"><a class="text-info">Currency</a></b-col>
                             <b-col align-self="center" md="3">
                                 <b-form-select
                                 id="inline-form-custom-select-pref"
@@ -137,13 +139,13 @@
                                 v-model="amountMoney"/>
                             </b-col>
                             <b-col align-self="center" md="2">
-                                You decide to send: <strong>{{ currencyChoose + amountMoney }}</strong>
+                                <a class="text-info">You want to send: <strong>{{ currencyChoose + amountMoney }}</strong></a>
                             </b-col>
                         </b-row>
                     </div>
                     <div>
                         <b-row class="mt-4 justify-content-md-center">
-                            <b-col align-self="center" md="3"><label class="mr-sm-2" for="inline-form-custom-select-pref">Select your intention</label></b-col>
+                            <b-col align-self="center" md="3"><a class="text-info">Select your intention</a></b-col>
                             <b-col align-self="center" md="3">
                                 <b-form-select
                                 id="inline-form-custom-select-pref"
@@ -154,30 +156,34 @@
                                 ></b-form-select>
                             </b-col>
                             <b-col align-self="center" md="3">
-                                You choose to: <strong>{{ itemChoose }}</strong>
+                                <a class="text-info">You choose to: <strong>{{ itemChoose }}</strong></a>
                             </b-col>
                         </b-row>
                     </div>
                     <div>
-                        <b-row class="mt-4 justify-content-md-center">
-                            <b-col align-self="center" md="3">
+                        <b-row align-h="center" class="mt-4 justify-content-md-center">
+                            <b-col align-self="center" cols="3">
                                 <b-form-input v-model="artistNumber" placeholder="Enter Artist ID number"></b-form-input>
                             </b-col>
+                            <b-col align-self="center" cols="1">
+                                <b-button v-on:click="searchArtist" variant="light" size="sm">search</b-button>
+                            </b-col>
                             <b-col align-self="center" md="2">
-                                You choose Artist: <strong>{{ artistChoose }}</strong>
+                                <a class="text-info">You choose Artist: <strong>{{ artistChoose }}</strong></a>
                             </b-col>
                         </b-row>
                     </div>
                     <div class="mt-4">
-                        <b-row class="justify-content-md-center"><h6>Select the date of transaction</h6></b-row>
+                        <b-row class="justify-content-md-center"><a class="text-info"><h6>Select the date of transaction</h6></a></b-row>
                         <b-row class="justify-content-md-center"><b-calendar v-model="transactionDate" :min="min" :max="max" locale="en"></b-calendar></b-row>
                     </div>
                     <div>
                         <b-row class="my-3">
-                            <b-col>Remark:   <br>
+                            <b-col><a class="text-info">Remark:   </a><br>
                     <b-form-textarea
                         class="Description"
                         v-model="description"
+                        placeholder="Add some remark that can help to indentify this transaction more"
                         rows="3" />
                             </b-col>
                         </b-row>
@@ -194,12 +200,14 @@
                         </b-row>
                     </div>
                 </b-tab>
+            </div> <!--background picture-->
 
             <!--information after-->
+            <div :style="{backgroundImage: `url(${image2})`}">
                 <b-tab title="Information after you send" active>
                     <div>
                         <b-row align-h="center" >
-                            <b-col align-self="center" md="2">Your Name</b-col>
+                            <b-col align-self="center" md="2" class="text-default"><a class="text-info">Your Name</a></b-col>
                             <b-col md="3"><b-form-input
                         id="offeringGuy"
                         v-model="offeringGuy"/>
@@ -208,7 +216,7 @@
                     </div>
                     <span v-if="blockchainDeicision == true ">
                         <b-row align-h="center" >
-                            <b-col align-self="center" md="2">Your blockchain address</b-col>
+                            <b-col align-self="center" md="2" class="text-default"><a class="text-info">Your blockchain address</a></b-col>
                             <b-col md="3"><b-form-input
                         id="offeringGuyAddress"
                         v-model="offeringGuyAddress"/>
@@ -217,7 +225,7 @@
                     </span>
                     <div>
                         <b-row align-h="center" >
-                            <b-col align-self="center" md="2">Your Phone</b-col>
+                            <b-col align-self="center" md="2"><a class="text-info">Your Phone</a></b-col>
                             <b-col md="3"><b-form-input
                         id="phone"
                         v-model="phone"/>
@@ -226,7 +234,7 @@
                     </div>
                     <div>
                         <b-row align-h="center" >
-                            <b-col align-self="center" md="2">Your E-Mail</b-col>
+                            <b-col align-self="center" md="2"><a class="text-info"> Your E-Mail </a></b-col>
                             <b-col md="3"><b-form-input
                         id="email"
                         v-model="email"/>
@@ -235,7 +243,7 @@
                     </div>
                     <div>
                         <b-row class="mt-4 justify-content-md-center">
-                            <b-col align-self="center" md="1"><label class="mr-sm-2" for="inline-form-custom-select-pref">Currency</label></b-col>
+                            <b-col align-self="center" md="1"><a class="text-info">Currency</a></b-col>
                             <b-col align-self="center" md="3">
                                 <b-form-select
                                 id="inline-form-custom-select-pref"
@@ -252,13 +260,13 @@
                                 v-model="amountMoney"/>
                             </b-col>
                             <b-col align-self="center" md="2">
-                                You have sent: <strong>{{ currencyChoose + amountMoney }}</strong>
+                                <a class="text-info">You have sent: <strong>{{ currencyChoose + amountMoney }}</strong></a>
                             </b-col>
                         </b-row>
                     </div>
                     <div>
                         <b-row class="mt-4 justify-content-md-center">
-                            <b-col align-self="center" md="3"><label class="mr-sm-2" for="inline-form-custom-select-pref">Select your intention</label></b-col>
+                            <b-col align-self="center" md="3"><a class="text-info">Select your intention</a></b-col>
                             <b-col align-self="center" md="3">
                                 <b-form-select
                                 id="inline-form-custom-select-pref"
@@ -269,72 +277,52 @@
                                 ></b-form-select>
                             </b-col>
                             <b-col align-self="center" md="3">
-                                You choose to: <strong>{{ itemChoose }}</strong>
+                                <a class="text-info">You choose to: <strong>{{ itemChoose }}</strong></a>
                             </b-col>
                         </b-row>
                     </div>
                     <div>
-                        <b-row class="mt-4 justify-content-md-center">
-                            <b-col align-self="center" md="3">
+                        <b-row align-h="center" class="mt-4 justify-content-md-center">
+                            <b-col align-self="center" cols="3">
                                 <b-form-input v-model="artistNumber" placeholder="Enter Artist ID number"></b-form-input>
                             </b-col>
+                            <b-col align-self="center" cols="1">
+                                <b-button v-on:click="searchArtist" variant="light" size="sm">search</b-button>
+                            </b-col>
                             <b-col align-self="center" md="2">
-                                Artist you chose: <strong>{{ artistChoose }}</strong>
+                                <a class="text-info">You choose Artist: <strong>{{ artistChoose }}</strong></a>
                             </b-col>
                         </b-row>
                     </div>
                     <div class="mt-4">
-                        <b-row class="justify-content-md-center"><h6>Select the date of transaction</h6></b-row>
+                        <b-row class="justify-content-md-center"><a class="text-info"><h6>Select the date of transaction</h6></a></b-row>
                         <b-row class="justify-content-md-center"><b-calendar v-model="transactionDate" :min="min" :max="max" locale="en"></b-calendar></b-row>
                     </div>
                     <div>
                         <b-row class="my-3">
-                            <b-col>Remark:   <br>
+                            <b-col><a class="text-info">Remark:   </a><br>
                     <b-form-textarea
                         class="Description"
                         v-model="description"
+                        placeholder="Add some remark that can help to indentify this transaction more"
                         rows="3" />
                             </b-col>
                         </b-row>
                     </div>
         <!--the after button setting-->
                     <div>
-                        <b-row align-h="center" class="mt-3 my-1">
+                        <b-row class="mt-3 my-1" align-h="center">
                             <b-col align-self="center">
                                 <b-button @click="transactionButton" :pressed.sync="transactionStatus" variant="outline-secondary">Confirm transaction</b-button>
                             </b-col>
                         </b-row>
-                        <b-row class="mt-2 justify-content-md-center">
+                        <b-row class="justify-content-md-center">
                             <p><strong>{{ transactionStatus }}</strong></p>
                         </b-row>
                     </div>
                 </b-tab>
+            </div> <!--background picture-->
 
-        <!--other information-->
-                <!--explain the information users input-->
-                <b-tab title="Explanation">
-                    <b-row>
-                    <b-card
-                        overlay
-                        img-src="./storage/5.jpg"
-                        img-alt="Card Image"
-                        text-variant="white"
-                        title="We don't interven your support">
-                        <b-card-text>We offer platform that you can send surpport directly to artists</b-card-text>
-                    </b-card>
-                    </b-row>
-                    <b-row>
-                    <b-card
-                        overlay
-                        img-src="./storage/1.jpg"
-                        img-alt="Card Image"
-                        text-variant="white"
-                        title="It is Decentralized money distribution">
-                        <b-card-text>You send the money directly to artists, that is why you need to leave your contact, because artists will send you his bank account</b-card-text>
-                        <b-card-text>Blockchain here helps to record money transferring</b-card-text>
-                    </b-card>
-                    </b-row>
-                </b-tab>
             </b-tabs>
         </div>
 
@@ -351,7 +339,8 @@ Vue.use(BootstrapVueIcons)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import image1 from './storage/6.jpg'
+import image1 from './storage/7.jpg'
+import image2 from './storage/12.jpg'
 
 import storageList from './storage/storageList' //database information input
 import web3 from '../participantContract/web3'
@@ -378,6 +367,7 @@ export default {
       //calendar till here
     return {
         image1, //background pic
+        image2, //background pic
         //decision to blockchain usage
         blockchainDeicision: true, //to show whether blockchain is selected
         optAnswer: null, //toggle result whether blockchain is adopted
@@ -406,6 +396,7 @@ export default {
         //artist choosing
         artistNumber: null,
         artistChoose: null,
+        dbArray: [], //upload database here to generate artist name, this page only use for artist id
         //transaction date
         transactionDate: '', 
         min: minDate,
@@ -413,8 +404,6 @@ export default {
         description: '',
 
         transactionStatus: null, //showing transaction status, triggered by function "transactionButton"
-        dbArray: [], //upload database here to generate artist name
-
 
         //share number parameter
         decidedShare: null,
@@ -428,9 +417,7 @@ export default {
   created () {
       //here we load the filename within storageList onto dbArray
       let count = storageList.length;
-      while (count--) {
-      this.dbArray.push(storageList[count])
-      }
+      while (count--) {this.dbArray.push(storageList[count])}
   },
   beforeMount() {
     participantBox.methods.returnAllParticipants().call().then((participants) => {
@@ -446,6 +433,18 @@ export default {
             this.optAnswer = "Yes, I confirm to use blockchain"
         }
     },
+    searchArtist () {
+      let count = storageList.length;
+      while (count--) {
+        this.dbArray.push(storageList[count])
+        if (storageList[count].id == this.artistNumber) {
+            this.artistChoose = storageList[count].artist
+        }
+      }
+    },
+
+
+
     transactionButton () {
         if(this.email == null) {
           alert('Please at least leave E-mail');
