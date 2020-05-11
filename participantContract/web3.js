@@ -8,7 +8,7 @@ if (window.ethereum) {
 } else if (window.web3) {
     window.web3 = new Web3(web3.currentProvider);
 } else {
-    console.log('You need MetaMask! So far we only use MetaMask');
+    console.log('Conrad has no answer here');
 }
 console.log(web3);
 export default web3;

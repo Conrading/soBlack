@@ -313,7 +313,7 @@
                     <div>
                         <b-row class="mt-3 my-1" align-h="center">
                             <b-col align-self="center">
-                                <b-button @click="transactionButton" :pressed.sync="transactionStatus" variant="outline-secondary">Confirm transaction</b-button>
+                                <b-button @click="transactionButton" :pressed.sync="transactionStatus" variant="outline-secondary">Confirm Transaction</b-button>
                             </b-col>
                         </b-row>
                         <b-row class="justify-content-md-center">
@@ -344,8 +344,7 @@ import image2 from './storage/12.jpg'
 
 import storageList from './storage/storageList' //database information input
 import web3 from '../participantContract/web3'
-import participantInstance from '../participantContract/participantInstance'
-import participantBox from '../participantContract/participantBox'
+import demoAPIbox from '../participantContract/demoAPIbox'
 
 export default {
   name: 'Blockchain',
@@ -369,7 +368,7 @@ export default {
         image1, //background pic
         image2, //background pic
         //decision to blockchain usage
-        blockchainDeicision: true, //to show whether blockchain is selected
+        blockchainDeicision: false, //to show whether blockchain is selected
         optAnswer: null, //toggle result whether blockchain is adopted
         //input offering information
         offeringGuy: null, //used to be minimumShare
@@ -383,7 +382,7 @@ export default {
             { value: 'NTD ', text: 'New Taiwan Dollar'},
             { value: 'Peso ', text: 'Mexico Peso'},
         ],
-        currencyChoose: null, //showing currecy type
+        currencyChoose: "", //showing currecy type
         amountMoney: "", //showing amount of money
         itemChoose: null,
         //here I use weird term, but I actually mean the intention
@@ -405,13 +404,7 @@ export default {
 
         transactionStatus: null, //showing transaction status, triggered by function "transactionButton"
 
-        //share number parameter
-        decidedShare: null,
-        
-        //blockchain fee
-        processFee: '2',
-        amount: 0,
-        inputName: null,
+
     }
   },
   created () {
@@ -420,17 +413,22 @@ export default {
       while (count--) {this.dbArray.push(storageList[count])}
   },
   beforeMount() {
-    participantBox.methods.returnAllParticipants().call().then((participants) => {
+      //if needed, we should switch to from 'participantBox' to 'demoAPIbox'
+    /*
+    demoAPIbox.methods.returnAllParticipants().call().then((participants) => {
       this.amount = participants.length;
     });
+    */
   },
   methods: {
     blockchainToggle() {
         if (this.blockchainDeicision == false) {
             this.optAnswer = "No, I DON'T want to use blockchain"
+            this.transactionStatus = ""
         }
         if (this.blockchainDeicision == true) {
             this.optAnswer = "Yes, I confirm to use blockchain"
+            this.transactionStatus = ""
         }
     },
     searchArtist () {
@@ -442,9 +440,6 @@ export default {
         }
       }
     },
-
-
-
     transactionButton () {
         if(this.email == null) {
           alert('Please at least leave E-mail');
@@ -454,7 +449,7 @@ export default {
           alert('Please choose currency you use');
           return;
         }
-        if (Number(this.minimumShare) < 0 || Number(this.minimumShare) == 0 || this.amountMoney == null) {
+        if (Number(this.amountMoney) < 0 || Number(this.amountMoney) == 0 || this.amountMoney == null) {
           alert ('Please tell artist how much money you send')
           return;
         }
@@ -462,11 +457,48 @@ export default {
           alert ('Please select one artist')
           return;
         }
-        this.transactionStatus = "You have left information in blockchain"
+        //user selects NOT using blockchain
+        if (this.blockchainDeicision == false) {
+            //upload data to database
+            this.transactionStatus = "Data Stored"
+        }
+        if (this.blockchainDeicision == true) {
+            web3.eth.getAccounts().then((accounts) => {
+                //const processFee = web3.utils.toWei(this.processFee, 'ether'); //this was used to confirm whether user insert minimum fee
+                this.transactionStatus = "processing"
+                return demoAPIbox.methods.transactionButton(
+                    this.offeringGuy,
+                    //this.offeringGuyAddress, //I didn't put this in blockchain, we can merely save to our database to identify those data
+                    this.phone,
+                    this.email,
+                    /*
+                    this.currency,
+                    this.amountMoney,
+                    this.itemChoose, // in case I forget, this means intention
+                    this.artistChoose,
+                    this.transactionDate,
+                    this.description
+                    */
+                ).send({ from: accounts[0], gas: 4700000 })
+            }).then(() => {
+                this.transactionStatus = "You have left information in blockchain"
+                this.offeringGuy = null,
+                this.offeringGuyAddress = null,
+                this.phone = null,
+                this.email = null,
+                this.currency = [{ value: null, text: 'please select currency'}],
+                this.amountMoney = '',
+                this.itemChoose = null, // in case I forget, this means intention
+                this.artistChoose = null,
+                this.transactionDate = '',
+                this.description = ''
+            })
+        }
     },
 
+       
 
-
+/*
       minimumShareButton() {
         if(Number(this.minimumShare) < 0 || Number(this.minimumShare) > 100) {
           alert('please input minimum share a positive number, or less than 100');
@@ -517,6 +549,7 @@ export default {
           }
         });
     }
+    */
   }
 }
 
