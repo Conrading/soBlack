@@ -15,6 +15,7 @@ contract DemoAPIbox {
         string offeringGuy, //corresponding parameter should be set up in demoAPIbox as interface
         uint128 phone,
         string email
+        //I turn off below temporary, for saving gas
         /*
         uint8 currency,
         uint16 amountMoney,

@@ -412,8 +412,12 @@ export default {
       let count = storageList.length;
       while (count--) {this.dbArray.push(storageList[count])}
   },
-  beforeMount() {
+  mounted() {
       //if needed, we should switch to from 'participantBox' to 'demoAPIbox'
+    web3.eth.getAccounts().then((accounts) => {
+        if (accounts[0] !== null)
+        {this.optAnswer = "We detect you have ethereum wallet account, you can use blockchain"}
+    });
     /*
     demoAPIbox.methods.returnAllParticipants().call().then((participants) => {
       this.amount = participants.length;
