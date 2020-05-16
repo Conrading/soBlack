@@ -161,6 +161,9 @@ There are several options to **play sound**
 
 ### Frontend required package
 ```
+$ npm install vue
+```
+```
 $ npm install video.js
 ```
 ```
