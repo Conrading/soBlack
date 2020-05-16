@@ -343,8 +343,8 @@ import image1 from './storage/7.jpg'
 import image2 from './storage/12.jpg'
 
 import storageList from './storage/storageList' //database information input
-import web3 from '../participantContract/web3'
-import demoAPIbox from '../participantContract/demoAPIbox'
+//import web3 from '../participantContract/web3'
+//import demoAPIbox from '../participantContract/demoAPIbox'
 
 export default {
   name: 'Blockchain',
@@ -407,23 +407,27 @@ export default {
 
     }
   },
+  /*
   created () {
       //here we load the filename within storageList onto dbArray
       let count = storageList.length;
       while (count--) {this.dbArray.push(storageList[count])}
   },
+  */
+ /*
   mounted() {
       //if needed, we should switch to from 'participantBox' to 'demoAPIbox'
     web3.eth.getAccounts().then((accounts) => {
         if (accounts[0] !== null)
         {this.optAnswer = "We detect you have ethereum wallet account, you can use blockchain"}
     });
-    /*
-    demoAPIbox.methods.returnAllParticipants().call().then((participants) => {
-      this.amount = participants.length;
-    });
-    */
+    
+    //demoAPIbox.methods.returnAllParticipants().call().then((participants) => {
+    //  this.amount = participants.length;
+    //});
+    
   },
+  */
   methods: {
     blockchainToggle() {
         if (this.blockchainDeicision == false) {
@@ -444,6 +448,7 @@ export default {
         }
       }
     },
+    /*
     transactionButton () {
         if(this.email == null) {
           alert('Please at least leave E-mail');
@@ -475,14 +480,14 @@ export default {
                     //this.offeringGuyAddress, //I didn't put this in blockchain, we can merely save to our database to identify those data
                     this.phone,
                     this.email,
-                    /*
+                    //////
                     this.currency,
                     this.amountMoney,
                     this.itemChoose, // in case I forget, this means intention
                     this.artistChoose,
                     this.transactionDate,
                     this.description
-                    */
+                    //////
                 ).send({ from: accounts[0], gas: 4700000 })
             }).then(() => {
                 this.transactionStatus = "You have left information in blockchain"
@@ -499,6 +504,7 @@ export default {
             })
         }
     },
+    */
 
        
 

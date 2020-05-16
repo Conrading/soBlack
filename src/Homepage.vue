@@ -45,7 +45,7 @@
         </div>
         <div v-if="bChainClick == true">
             <span class="mt-3">
-                <b-row><BlockchainHere></BlockchainHere></b-row>
+                <!--b-row><BlockchainHere></BlockchainHere></b-row-->
             </span>
         </div>
         <div v-if="copyRightClick == true">
@@ -85,7 +85,7 @@ Vue.use(MdButton, MdContent, MdTabs)
 import SearchDisplay from './SearchDisplay'
 import FilePlayer from './FilePlayer'
 import ButtonBottom from './ButtonBottom'
-import BlockchainHere from './BlockchainHere'
+//import BlockchainHere from './BlockchainHere'
 import Blank from './Blank'
 import lightimage from './storage/10.jpg' //background image
 
@@ -95,7 +95,7 @@ export default {
         SearchDisplay,
         FilePlayer,
         ButtonBottom,
-        BlockchainHere,
+        //BlockchainHere,
         Blank
     },
     data () {

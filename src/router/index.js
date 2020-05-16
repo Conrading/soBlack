@@ -6,7 +6,7 @@ import ButtonBottom from '../ButtonBottom'
 import PlayerParameter from '../PlayerParameter'
 import FilePlayer from '../FilePlayer';
 import Uploading from '../Uploading';
-import BlockchainHere from '../BlockchainHere';
+//import BlockchainHere from '../BlockchainHere';
 import Blank from '../Blank';
 
 Vue.use(Router);
@@ -44,11 +44,13 @@ export default new Router({
       name: 'Uploading',
       component: Uploading,
     },
+    /*
     {
       path: '/BlockchainHere',
       name: 'BlockchainHere',
       component: BlockchainHere,
     },
+    */
     {
       path: '/Blank',
       name: 'Blank',
