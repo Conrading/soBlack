@@ -173,8 +173,9 @@ $ npm install bootstrap-vue
 $ npm install vue-router
 ```
 ```
-$ npm install web3
+$ npm install web3@1.2.6
 ```
+> python [2.7](https://askubuntu.com/questions/981118/correct-way-to-install-python-2-7-on-ubuntu-17-10) might be required; further information please refer to [2 — Install Web3](https://medium.com/b2expand/install-web3-fc96b885a7b)
 ```
 $ npm install axios
 ```

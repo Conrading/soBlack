@@ -11,12 +11,13 @@
     "axios": "^0.19.2",
     "bootstrap-icons": "^1.0.0-alpha3",
     "bootstrap-slider": "^10.6.2",
-    "bootstrap-vue": "^2.6.0",
+    "bootstrap-vue": "^2.14.0",
     "core-js": "^3.4.4",
     "express": "^4.17.1",
     "file-system": "^2.2.2",
     "jquery": "^3.4.1",
     "mdbvue": "^6.7.0",
+    "node-gyp": "^6.1.0",
     "solc": "^0.6.7",
     "videojs": "^1.0.0",
     "videojs-contrib-hls": "^5.15.0",
@@ -29,10 +30,10 @@
     "vue-router": "^3.1.6",
     "vue-scroll": "^2.1.13",
     "vue-upload-component": "^2.8.20",
-    "vue-virtual-scroll-list": "^2.0.8",
+    "vue-virtual-scroll-list": "^2.2.3",
     "vue-youtube": "^1.4.0",
     "vuescroll": "^4.15.0",
-    "web3": "^1.2.6"
+    "web3": "^1.0.0-beta.35"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
@@ -43,7 +44,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
-    "video.js": "^7.6.6",
+    "video.js": "^7.7.6",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {

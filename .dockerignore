@@ -1,0 +1,4 @@
+# comment
+*/node_modules*
+*.mp4
+!star_war.mp4
