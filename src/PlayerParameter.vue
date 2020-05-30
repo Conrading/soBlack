@@ -89,7 +89,7 @@ export default {
         playerData: null,
         dbArray: [], //store data from database
         settingWhich: null, //the status showing bottom
-        filenameSetting: null,
+        filenameSetting: null, //attribute used for identify selected file
 
         startTime: null,
         stStatus: null,
@@ -128,7 +128,11 @@ export default {
           Vue.set (name, 'active', true)
         }
       },
-      parameterSetting () {
+      async parameterSetting () {
+          if (Number(this.startTime) < 0) {
+            alert('please input start time in seconds greater than 0');
+            return;
+          }
           let count = this.playerData.Rfj8polsG.length;
           while (count--) {
             if (this.playerData.Rfj8polsG[count].filename == this.filenameSetting) {
@@ -139,7 +143,7 @@ export default {
                   filename: this.filenameSetting,
                   volume: (this.soundVolume / 10)
                   }
-                http.post("/Homepage/PlayerParameter", {justUpdate})
+                await http.post("/Homepage/PlayerParameter", {justUpdate})
                 .then(this.settingWhich = "you have set volume to " + (this.soundVolume / 10))
                 .catch(err => {this.settingWhich = err;});  
               }
@@ -148,7 +152,7 @@ export default {
                   filename: this.filenameSetting,
                   startPlay: this.startTime
                   }
-                http.post("/Homepage/PlayerParameter", {justUpdate})
+                await http.post("/Homepage/PlayerParameter", {justUpdate})
                 .then(this.settingWhich = "you have set star time to " + this.startTime)
                 .catch(err => {this.settingWhich = err;});  
               }
@@ -158,7 +162,7 @@ export default {
                   startPlay: this.startTime, 
                   volume: (this.soundVolume / 10)
                   }
-                http.post("/Homepage/PlayerParameter", {justUpdate})
+                await http.post("/Homepage/PlayerParameter", {justUpdate})
                 .then(this.settingWhich = "you have set star time to " + this.startTime + " and volume to " + (this.soundVolume / 10))
                 .catch(err => {this.settingWhich = err;});  
               }
@@ -199,10 +203,6 @@ export default {
         this.playStatus = "sound is playing";     
         trackSound01.play(trackSound01.currentTime = this.startTime, trackSound01.volume = this.soundVolume, trackSound01.duration = this.durationTime);
           //maybe maximum parameter is two, the third parameter can't be set anyway
-        
-        
-        
-        
         //if there is need to confirm whether button is clicked
         //please refer to this link https://eloquentjavascript.net/15_event.html
         //
@@ -211,113 +211,7 @@ export default {
         //  buttonName.removeEventListener("click", once);
         //}
         //buttonName.addEventListener("click", once);
-
       },
-      leftVideo () {
-        if (Number(this.startTime) < 0) {
-          alert('please input start time in seconds greater than 0');
-          return;
-        }
-        if (Number(this.durationTime) < 0) {
-          alert('please input durationTime time in seconds greater than 0');
-          return;
-        }
-        if (Number(this.soundVolume) > 1 && Number(this.soundVolume) < 0) {
-          alert('please input integer between 0 and 1, such as 0.5');
-          return;
-        } 
-
-        document.getElementById("leftVideo").style.color = "red";
-        document.getElementById("rightVideo").style.color = "green";
-        document.getElementById("sound01").style.color = "grey";
-
-        let videoDisplay01 = this.$refs.videoPlayer01;
-        //another option:
-        //var videoDisplay01 = document.getElementById("videoPlayer01");
-        //upload setting here
-        axios.post('http://localhost:8080/fileListing.JSON', 
-            [this.leftVideoStorage[0] = this.startTime,
-            this.leftVideoStorage[1] = this.soundVolume,
-            this.leftVideoStorage[2] = this.durationTime
-            ]
-          )
-      
-        //play video here, the {option} is necessary, otherwise currentTime is not readable
-        videojs('videoPlayer01', {
-        bigPlayButton: false,
-        textTrackDisplay: false,
-        posterImage: false,
-        errorDisplay: false,
-        controlBar: true,
-        VolumeLevel: this.volume,
-        }, () => {
-          videoDisplay01.currentTime = this.startTime; 
-          videoDisplay01.volume = this.volume; //volume is still not working
-          videoDisplay01.duration = Number(this.duration);//so as duration
-        }).play();
-        videojs(videoDisplay01).on("playing", () => {
-          this.playStatus = "video playing";
-          });
-        
-        videojs(videoDisplay01).on("pause", () => {
-          this.playStatus = "now pause";
-          });
-        videojs(videoDisplay01).on("ended", () => {
-          this.playStatus = "now it has finished";
-        })        
-      },
-      rightVideo () {
-        if (Number(this.startTime) < 0) {
-          alert('please input start time in seconds greater than 0');
-          return;
-        }
-        if (Number(this.durationTime) < 0) {
-          alert('please input durationTime time in seconds greater than 0');
-          return;
-        }
-        if (Number(this.soundVolume) > 1 && Number(this.soundVolume) < 0) {
-          alert('please input integer between 0 and 1, such as 0.5');
-          return;
-        } 
-
-        document.getElementById("leftVideo").style.color = "green";
-        document.getElementById("rightVideo").style.color = "red";
-        document.getElementById("sound01").style.color = "grey";
-
-        let videoDisplay02 = this.$refs.videoPlayer02;
-        axios.post('http://localhost:8080/fileListing.JSON', 
-            [this.rightVideoStorage[0] = this.startTime,
-            this.rightVideoStorage[1] = this.soundVolume,
-            this.rightVideoStorage[2] = this.durationTime
-            ]
-          )
-
-        videojs('videoPlayer02', {
-        bigPlayButton: false,
-        textTrackDisplay: false,
-        posterImage: false,
-        errorDisplay: false,
-        controlBar: true,
-        VolumeLevel: this.volume,
-        }, () => {
-          videoDisplay02.currentTime = this.startTime; 
-          videoDisplay02.volume = this.volume; //volume is still not working
-          videoDisplay02.duration = Number(this.duration);//so as duration
-        }).play();
-        videojs(videoDisplay02).on("playing", () => {
-          this.playStatus = "video playing";
-          });
-        videojs(videoDisplay02).on("pause", () => {
-          this.playStatus = "now pause";
-          });
-        videojs(videoDisplay02).on("ended", () => {
-          this.playStatus = "now it has finished";
-        })   
-      },
-      parameterSetting() {
-        //store setting in database
-        this.settingWhich = "Setting Stored and Submitted"
-      }
     */
     }
 }

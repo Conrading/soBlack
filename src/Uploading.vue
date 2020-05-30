@@ -14,7 +14,8 @@
                     <b-col>
                       <b-button id="selectbutton" 
                                 v-on:click="name.pressingStatus = !name.pressingStatus" 
-                                size="sm" pill variant="outline-dark">
+                                size="sm" pill variant="outline-dark"
+                                @click="pressedCheck($event, name)">
                         <i v-bind:class="[{ 'green' : name.pressingStatus}, 'material-icons']">{{ name.filename }}</i>
                       </b-button>
                     </b-col>
@@ -74,6 +75,7 @@ export default {
       files: [],
       playerData: null, //get data from backend to this parameter
       dbArray: [], //store data from database
+      filenameSetting: null, //attribute used for identify selected file
       typeOptions: [
         { value: null, text: 'please select file format you upload'},
         { value: 'video', text: 'video file format'},
@@ -102,6 +104,16 @@ export default {
       }).catch(err => {this.status = err;});
   },
   methods: {
+    pressedCheck(event, name) {
+      //pick which file is going to be replaced
+      name.active = true; //add this then toggle once is enough
+      if (name.active) {
+        name.active = false;
+        this.filenameSetting = name.filename
+      } else if (!name.active) {
+        Vue.set (name, 'active', true)
+      }
+    },
     addFiles(){
       this.$refs.files.click();
     },
@@ -112,23 +124,24 @@ export default {
         formData.append('files[' + i + ']', file);
         formData.append('filetype', this.selectedType);
         formData.append('filetitle', file.name);
+        formData.append('filereplace', this.filenameSetting);
         formData.append('location', './storage');
       }
       this.status = "Submitting.....";
 
-      this.axios.post({
-        method: 'post',
+      http.post({
+        //method: 'post',
         //url: 'api/information.php',
-        baseURL: "http://localhost:8080/api",
+        baseURL: "/Homepage/Uploading",
         data: formData,
         //config: { headers: {'Content-Type': 'multipart/form-data'}}
-        config: { headers: {'Content-Type': 'application/json'}}
+        //config: { headers: {'Content-Type': 'application/json'}}
       }
       ).then(() => {
         this.status = "Success !!"
         this.resetAll();
-      }).catch(() => {
-        this.status = "Failure !!"
+      }).catch(err => {
+        this.status = "Failure !!" + err
       })
     },
     handleFilesUpload() {

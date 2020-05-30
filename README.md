@@ -199,4 +199,10 @@ $ npm install body-parser
 ```
 $ npm install cors
 ```
+```
+$ npm install express-fileupload
+```
+```
+$ npm install aws-sdk
+```
 
