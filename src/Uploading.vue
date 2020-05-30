@@ -117,7 +117,7 @@ export default {
     addFiles(){
       this.$refs.files.click();
     },
-    submitFiles(){
+    async submitFiles(){
       let formData = new FormData();
       for( var i = 0; i < this.files.length; i++ ){
         let file = this.files[i];
@@ -129,11 +129,13 @@ export default {
       }
       this.status = "Submitting.....";
 
-      http.post({
+      await http.post(
+        "/Homepage/Uploading",{
+          formData
         //method: 'post',
         //url: 'api/information.php',
-        baseURL: "/Homepage/Uploading",
-        data: formData,
+        //baseURL: "/Homepage/Uploading",
+        //data: formData,
         //config: { headers: {'Content-Type': 'multipart/form-data'}}
         //config: { headers: {'Content-Type': 'application/json'}}
       }

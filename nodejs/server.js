@@ -9,7 +9,7 @@ app.use(fileUpload())
 
 const port = process.env.PORT || 5071;
 
-const fs = require('fs')
+//import { promises as fs } from 'fs'
 
 /*
 app.get('/Homepage', (req, res) => {
@@ -17,6 +17,7 @@ app.get('/Homepage', (req, res) => {
     console.log("backend is working, so in theory, front end should receive something from back")
 })
 */
+const fs = require('fs')
 //get data front database(JSON) and send to front
 app.get('/Homepage', (req, res) => {
     fs.readFile('../src/storage/storageList.JSON', 'utf8', (err, jsonString) => {
@@ -32,16 +33,29 @@ app.get('/Homepage', (req, res) => {
     })
 })
 //update database data after setting parameter
+//const fsPromise = require('fs').promises
 app.post('/Homepage/PlayerParameter', (req, res) => {
     const jsonUpdate = JSON.stringify(req.justUpdate, null, 2);
+    console.log('Now wait for writting into db')
+    return new Promise(function(resolve, reject) {
+        fs.writeFile('../src/storage/tem.JSON', jsonUpdate, (err) => {
+            if (err) reject(err);
+            else resolve('jsonUpdate')
+        })
+    })
+    .then(() => {
+        console.log('update parameter Sueccessful!!')
+    })
+    .catch(err => {console.log('Fail because of ', err)})
+    /*
     async () => {
-        await fs.writeFile('../src/storage/tem.JSON', jsonUpdate, err => {
-            if (err) {
-                console.log('Error writing file ', err)
-            } else {
-                console.log('successfully!!')
-            }
-        })}
+        await fs.writeFile('../src/storage/tem.JSON', jsonUpdate)
+    .then(() => {
+        console.log('update parameter Sueccessful!!')
+    })
+    .catch(err => {console.log('Fail because of ', err)})
+    }
+    */
 })
 //upload file to db
 const AWS = require('aws-sdk')

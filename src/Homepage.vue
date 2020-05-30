@@ -127,6 +127,7 @@ export default {
     },
     methods: {
         searchTask () {
+            alert('sorry, this is not yet available')
             //this.inputstatus == true
             //here we generate video/audio player
         },

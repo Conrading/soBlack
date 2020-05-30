@@ -128,7 +128,7 @@ export default {
           Vue.set (name, 'active', true)
         }
       },
-      async parameterSetting () {
+      parameterSetting () {
           if (Number(this.startTime) < 0) {
             alert('please input start time in seconds greater than 0');
             return;
@@ -143,7 +143,7 @@ export default {
                   filename: this.filenameSetting,
                   volume: (this.soundVolume / 10)
                   }
-                await http.post("/Homepage/PlayerParameter", {justUpdate})
+                http.post("/Homepage/PlayerParameter", {justUpdate})
                 .then(this.settingWhich = "you have set volume to " + (this.soundVolume / 10))
                 .catch(err => {this.settingWhich = err;});  
               }
@@ -152,7 +152,7 @@ export default {
                   filename: this.filenameSetting,
                   startPlay: this.startTime
                   }
-                await http.post("/Homepage/PlayerParameter", {justUpdate})
+                http.post("/Homepage/PlayerParameter", {justUpdate})
                 .then(this.settingWhich = "you have set star time to " + this.startTime)
                 .catch(err => {this.settingWhich = err;});  
               }
@@ -162,7 +162,7 @@ export default {
                   startPlay: this.startTime, 
                   volume: (this.soundVolume / 10)
                   }
-                await http.post("/Homepage/PlayerParameter", {justUpdate})
+                http.post("/Homepage/PlayerParameter", {justUpdate})
                 .then(this.settingWhich = "you have set star time to " + this.startTime + " and volume to " + (this.soundVolume / 10))
                 .catch(err => {this.settingWhich = err;});  
               }
