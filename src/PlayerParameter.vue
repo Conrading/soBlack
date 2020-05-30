@@ -1,73 +1,52 @@
 <template>
   <div class="container">    
-    <!--div class="videoRunner">
-      <b-row class="justify-content-md-center">
-        <b-col>
-          <video id="videoPlayer01" ref="videoPlayer01" class="video-js vjs-default-skin vjs-16-9" controls autoplay preload="auto" data-setup="{}">
-            <source src="./components/video.01.mov" type="video/mov">
-          </video>   
-        </b-col>
-        <b-col>
-          <video id="videoPlayer02" ref="videoPlayer02" class="video-js vjs-default-skin vjs-16-9" controls autoplay preload="auto" data-setup="{}">
-            <source src="./components/video.02.mp4" type="video/mp4">
-          </video>
-        </b-col>
-      </b-row>
-    </div>
-
-    <div class="soundRunner">
-      <audio id="trackSound01" ref="trackSound01" controls autoplay preload="auto">
-        <source src="./components/sound01.mp3">
-      </audio>
-    </div-->
-
     <b-container class="mt-5">
         <!--div :style="{backgroundImage: `url(${image2})`}"--> <!--upload image here-->
-              <b-row class="justify-content-md-center">
+              <b-row class="mt-3" align-h="center">
           <label for="parameterSetting">
-            ---- Choose the File you want to set ----
+            ---- Click button twice to set file parameter ----
           </label>
               </b-row>
               <ul id="autobutton">
                 <b-row align-h="center">
-                  <div v-for="name in dbArray" :key='name.id'>
+                  <div v-for="(name, index) in dbArray" :key='(name.id, index)'>
                     <b-col>
-                      <b-button id="selectbutton" 
+                      <b-button ref="selectbutton" 
                                 v-on:click="name.pressingStatus = !name.pressingStatus" 
-                                size="sm" pill variant="outline-dark">
+                                size="sm" pill variant="outline-dark"
+                                @click="pressedCheck($event, name)">
                         <i v-bind:class="[{ 'green' : name.pressingStatus}, 'material-icons']">{{ name.filename }}</i>
                       </b-button>
                     </b-col>
                   </div>
                 </b-row>
+                <!--b-row class="mt-3 justify-content-md-center">
+                  <p>Status: <strong>{{ settingWhich }}</strong></p>
+                </b-row-->
               </ul>
-              <b-row class="justify-content-md-center">
-          <!--b-button id="leftVideo" @click="leftVideo" :pressed.sync="leftVideobutton" pill variant="outline-success">Left Video</b-button>
-          <b-button id="rightVideo" @click="rightVideo" :pressed.sync="rightVideobutton" pill variant="outline-success">Right Video</b-button>
-          <b-button id="sound01" @click="sound01" :pressed.sync="sound01button" pill variant="outline-secondary">First Sound</b-button-->
-              </b-row>
         <!--/div-->
-
         <div class="mt-4">
             <b-row align-h="center">
                 <b-col align-h="end" align-self="center" lg="1.5">Start playing at </b-col>
                 <b-col md="1"><b-form-input id="startTime" v-model="startTime"/></b-col>
                 <b-col align-h="start" align-self="center" lg="0.8">seconds</b-col>
             </b-row>
+            <b-row class="mt-2 justify-content-md-center">Current value is : {{ stStatus }}</b-row>
         </div>
         <div class="my-4">
             <b-row align-h="center">
                 <b-col align-self="center" md="2">Input Volume</b-col>
                 <b-col md="3">
-                  <b-form-input type="range" min="0" max="10"></b-form-input>
+                  <b-form-input type="range" min="0" max="10" v-model="soundVolume"></b-form-input>
                   <!--form class="range-field w-75">
                   <input id="soundVolume" 
                     class="border-0" type="range" min="0" max="10" /></form>
                     <span class="font-weight-bold text-primary"></span-->
                 </b-col>
             </b-row>
+            <b-row class="mt-2 justify-content-md-center">Current value is : {{ svStatus }}</b-row>
         </div>
-        <div>
+        <!--div>
             <b-row align-h="center">
                 <b-col align-self="center" md="2">Input duration Time</b-col>
                 <b-col md="3"><b-form-input
@@ -77,7 +56,8 @@
           />
                 </b-col>
             </b-row>
-        </div> 
+        </div--> 
+
 
         <div>
               <b-row class="mt-3 justify-content-md-center">
@@ -87,30 +67,18 @@
           <p>Status: <strong>{{ settingWhich }}</strong></p>
               </b-row>
         </div> 
-  
-        <!--/div--> <!--background image-->
       </b-container>
   </div>  
 
 </template>
 
 <script>
-
-import videojs from 'video.js'
-import 'videojs-contrib-hls'
-
 import Vue from 'vue'
 import {BootstrapVue} from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-import storageList from './storage/storageList' //database information input
-//import fs from 'fs'
-import axios from 'axios'
-Vue.use(axios)
-//import $ from 'jquery'
-//import image2 from './storage/IMG_4.jpg' //background image
+import http from './http-axios'
 
 
 export default {
@@ -118,23 +86,86 @@ export default {
     data () {
       return {
         //image2, //image parameter
+        playerData: null,
         dbArray: [], //store data from database
-        playStatus: null,
         settingWhich: null, //the status showing bottom
+        filenameSetting: null,
 
         startTime: null,
+        stStatus: null,
         soundVolume: null,
-        durationTime: null,
+        svStatus: null,
+        //durationTime: null,
       }
     },
     created () {
       //here we load the filename within storageList onto dbArray
-      let count = storageList.length;
+      http.get("/Homepage").then(response => {this.playerData = response.data;
+      let count = this.playerData.Rfj8polsG.length;
       while (count--) {
-        this.dbArray.push(storageList[count])
+        if(this.playerData.Rfj8polsG[count].type == "video" || this.playerData.Rfj8polsG[count].type == "audio") {
+        this.dbArray.push(this.playerData.Rfj8polsG[count])}
       }
+      }).catch(err => {this.settingWhich = err;});
     },
     methods: {
+      pressedCheck(event, name) {
+        //pick which file is set parameter
+        name.active = true; //add this then toggle once is enough
+        if (name.active) {
+          name.active = false;
+          this.settingWhich = "you are setting " + name.filename;
+          this.filenameSetting = name.filename
+          let count = this.playerData.Rfj8polsG.length;
+          while (count--) {
+            //once the name is identical, then change parameter accordingly
+          if (this.playerData.Rfj8polsG[count].filename == this.filenameSetting) {
+              this.stStatus = this.playerData.Rfj8polsG[count].startPlay
+              this.svStatus = this.playerData.Rfj8polsG[count].volume
+              }
+            }
+        } else if (!name.active) {
+          Vue.set (name, 'active', true)
+        }
+      },
+      parameterSetting () {
+          let count = this.playerData.Rfj8polsG.length;
+          while (count--) {
+            if (this.playerData.Rfj8polsG[count].filename == this.filenameSetting) {
+              //this.stStatus = this.playerData.Rfj8polsG[count].startPlay
+              //this.svStatus = this.playerData.Rfj8polsG[count].volume
+              if (this.startTime == null) { //if no start time input, then assume only soundvolume changed
+                const justUpdate = {
+                  filename: this.filenameSetting,
+                  volume: (this.soundVolume / 10)
+                  }
+                http.post("/Homepage/PlayerParameter", {justUpdate})
+                .then(this.settingWhich = "you have set volume to " + (this.soundVolume / 10))
+                .catch(err => {this.settingWhich = err;});  
+              }
+              if (this.soundVolume == null) { 
+                const justUpdate = {
+                  filename: this.filenameSetting,
+                  startPlay: this.startTime
+                  }
+                http.post("/Homepage/PlayerParameter", {justUpdate})
+                .then(this.settingWhich = "you have set star time to " + this.startTime)
+                .catch(err => {this.settingWhich = err;});  
+              }
+              if (this.startTime != null && this.soundVolume != null) { 
+                const justUpdate = {
+                  filename: this.filenameSetting,
+                  startPlay: this.startTime, 
+                  volume: (this.soundVolume / 10)
+                  }
+                http.post("/Homepage/PlayerParameter", {justUpdate})
+                .then(this.settingWhich = "you have set star time to " + this.startTime + " and volume to " + (this.soundVolume / 10))
+                .catch(err => {this.settingWhich = err;});  
+              }
+            }
+          }
+        }
+      /*
       //so far, the below is useless
       sound01 () {
         //verify whether the input is correct
@@ -175,13 +206,11 @@ export default {
         //if there is need to confirm whether button is clicked
         //please refer to this link https://eloquentjavascript.net/15_event.html
         //
-        /*
-        let buttonName = document.getElementById("sound01");
-        function actOnlyOnce() {
-          buttonName.removeEventListener("click", once);
-        }
-        buttonName.addEventListener("click", once);
-        */
+        //let buttonName = document.getElementById("sound01");
+        //function actOnlyOnce() {
+        //  buttonName.removeEventListener("click", once);
+        //}
+        //buttonName.addEventListener("click", once);
 
       },
       leftVideo () {
@@ -237,7 +266,6 @@ export default {
           this.playStatus = "now it has finished";
         })        
       },
-      /*
       rightVideo () {
         if (Number(this.startTime) < 0) {
           alert('please input start time in seconds greater than 0');
@@ -322,4 +350,5 @@ export default {
 .green {
   color: green;
 }
+.active { color: red}
 </style>

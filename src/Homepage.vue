@@ -36,11 +36,19 @@
             <span class="mt-3">
                 <div :style="{backgroundImage: `url(${lightimage})`}"> <!--upload image here-->
                     <b-row>
-                        <b-col cols="8"><FilePlayer></FilePlayer></b-col>
-                        <b-col cols="4"><SearchDisplay></SearchDisplay></b-col>
+                        <b-col><FilePlayer></FilePlayer></b-col>
+                        <!--b-col cols="8"><FilePlayer></FilePlayer></b-col>
+                        <b-col cols="4"><SearchDisplay></SearchDisplay></b-col-->
                     </b-row>
                 </div>
-                <b-row><ButtonBottom></ButtonBottom></b-row>
+                <!--b-row><ButtonBottom></ButtonBottom></b-row-->
+    <nav>
+      <div class="directing">
+          <a><router-link to="/Homepage/Uploading"><b-button size="sm" variant="outline-dark"> Uploading Files </b-button></router-link></a>
+          <a><router-link to="/Homepage/PlayerParameter"><b-button size="sm" variant="outline-dark"> Set Parameter </b-button></router-link></a>
+        <router-view/>
+      </div>
+    </nav>
             </span>
         </div>
         <div v-if="bChainClick == true">
@@ -82,9 +90,9 @@ import { MdButton, MdContent, MdTabs } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 Vue.use(MdButton, MdContent, MdTabs)
-import SearchDisplay from './SearchDisplay'
+//import SearchDisplay from './SearchDisplay'
 import FilePlayer from './FilePlayer'
-import ButtonBottom from './ButtonBottom'
+//import ButtonBottom from './ButtonBottom'
 //import BlockchainHere from './BlockchainHere'
 import Blank from './Blank'
 import lightimage from './storage/10.jpg' //background image
@@ -92,9 +100,9 @@ import lightimage from './storage/10.jpg' //background image
 export default {
     name: 'Homepage',
     components: {
-        SearchDisplay,
+        //SearchDisplay,
         FilePlayer,
-        ButtonBottom,
+        //ButtonBottom,
         //BlockchainHere,
         Blank
     },
@@ -165,6 +173,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   margin-top: 25px;
+}
+.directing {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 30px;  
 }
 </style>
 

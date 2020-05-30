@@ -186,5 +186,17 @@ $ npm install axios
 $ npm install vue-virtual-scroll-list
 ```
 
-
+### Backend required package
+```
+$ npm install nodemon
+```
+```
+$ npm install express
+```
+```
+$ npm install body-parser
+```
+```
+$ npm install cors
+```
 

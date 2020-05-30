@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="uploadingRunner">
-      <!--Choosing file to upload-->
+      <!--Choosing file to replace-->
       <div>
               <b-row class="justify-content-md-center">
           <label for="parameterSetting">
@@ -64,15 +64,15 @@ import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue'
 Vue.use(BootstrapVue, BootstrapVueIcons)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import storageList from './storage/storageList' //database information input
-import axios from 'axios'
-Vue.use(axios)
+//import storageList from './storage/storageList' //database information input
+import http from './http-axios'
 
 export default {
   name: 'Uploading',
   data () {
     return {
       files: [],
+      playerData: null, //get data from backend to this parameter
       dbArray: [], //store data from database
       typeOptions: [
         { value: null, text: 'please select file format you upload'},
@@ -87,18 +87,19 @@ export default {
   },
   created () {
     //here we load the filename within storageList onto dbArray
+    /*
     let count = storageList.length;
     while (count--) {
       this.dbArray.push(storageList[count]) //instead of uploading specific parameter, we upload the whole
-      /*
-      this.dbArray.push(storageList[count].id)
-      this.dbArray.push(storageList[count].filename)
-      this.dbArray.push(storageList[count].pressingStatus)
-      */
     }
-
-    //const buttonsPressed = document.querySelectorAll("#selectbutton");
-    //buttonsPressed.forEach(buttonPressing => buttonPressing.addEventListener('click'))
+    */
+      http.get("/Homepage").then(response => {this.playerData = response.data;
+      let count = this.playerData.Rfj8polsG.length;
+      while (count--) {
+        if(this.playerData.Rfj8polsG[count].type == "video" || this.playerData.Rfj8polsG[count].type == "audio") {
+        this.dbArray.push(this.playerData.Rfj8polsG[count])}
+      }
+      }).catch(err => {this.status = err;});
   },
   methods: {
     addFiles(){

@@ -8,12 +8,19 @@
     </div-->
     <!--a href="url"><h6>back to search page</h6></a-->
     <nav>
+      <div>
+        <router-view>
+          <router-link to="/Homepage"></router-link>
+        </router-view>
+      </div>
+    </nav>
+    <!--nav>
       <div class="directing">
           <a><router-link to="/Uploading"><b-button size="sm" variant="outline-dark"> Uploading Files </b-button></router-link></a>
           <a><router-link to="/PlayerParameter"><b-button size="sm" variant="outline-dark"> Set Parameter </b-button></router-link></a>
         <router-view/>
       </div>
-    </nav>
+    </nav-->
   </div>
 </template>
 
@@ -26,7 +33,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 
 export default {
-  name: 'ButtonBottom',
+  name: 'LoadPage',
   data () {
     return {
     }

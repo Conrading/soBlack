@@ -81,11 +81,8 @@ import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue'
 Vue.use(BootstrapVue, BootstrapVueIcons)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import storageList from './storage/storageList' //database information input
-
-
-//import axios from 'axios'
-//Vue.use(axios)
+//import storageList from './storage/storageList' //database information input
+import http from './http-axios'
 
 export default {
   name: 'just-player',
@@ -96,15 +93,44 @@ export default {
     return {
         videoElement: null, //this is for video play/pause control
 
+        playerData: null, //all backend data passing to this 
         videoArray: [],
         audioArray: [],
         picArray:[],
+        linkArray: [],
         playStatus: null,
-        soun01Storage: [],//startTime, soundVolume, durationTime
+        //soun01Storage: [],//startTime, soundVolume, durationTime
     }
   },
   mounted () {
+      //using axios to pass data from backend
+      http.get("/Homepage").then(response => {this.playerData = response.data;
+        let count = this.playerData.Rfj8polsG.length; // we should replace "Rfj8polsG" to "index" in aws?
+        while (count--) {
+          if(this.playerData.Rfj8polsG[count].type == "video") {
+            this.videoArray.push(this.playerData.Rfj8polsG[count].filename);
+          }
+        }
+        while (count--) {
+          if(this.playerData.Rfj8polsG[count].type == "audio") {
+            this.audioArray.push(this.playerData.Rfj8polsG[count].filename);
+          }
+        }
+        while (count--) {
+          if(this.playerData.Rfj8polsG[count].type == "pic") {
+            this.picArray.push(this.playerData.Rfj8polsG[count].filename);
+          }
+        }
+        while (count--) {
+          if(this.playerData.Rfj8polsG[count].type == "link") {
+            this.linkArray.push(this.playerData.Rfj8polsG[count].filename);
+          }
+        }
+        //console.log("backend link to frontend successfully")
+        })
+        .catch(err => {this.playStatus = err;});
     //here we load the filename within storageList onto dbArray
+    /*
     let count = storageList.length;
     while (count--) {
       if(storageList[count].type == "video") {
@@ -116,6 +142,7 @@ export default {
         this.audioArray.push(storageList[count].filename);
       }
     }
+    */
   },
   methods: {
     /*
@@ -130,15 +157,15 @@ export default {
       let i = videoElements.length;
       while (i--) {
         videojs(videoElements[i]).play(
-          videoDisplay[i].currentTime = storageList[i].startPlay,
-          videoDisplay[i].volume = storageList[i].volume)
+          videoDisplay[i].currentTime = this.playerData.Rfj8polsG[i].startPlay,
+          videoDisplay[i].volume = this.playerData.Rfj8polsG[i].volume)
       }
 
       //playing sound
       //var sound01Track = document.getElementById("trackSound01");
       //sound01Track.play(sound01Track.currentTime = this.soun01Storage[0], sound01Track.volume = this.soun01Storage[1]);
       this.playStatus = "it is playing now";
-    },
+      },
     
     stopPlay () {
       let videoElements = this.$el.querySelectorAll('video')
