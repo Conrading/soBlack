@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 const cors = require('cors')
 app.use(cors())
 const fileUpload = require('express-fileupload');
@@ -33,12 +34,19 @@ app.get('/Homepage', (req, res) => {
     })
 })
 //update database data after setting parameter
-//const fsPromise = require('fs').promises
 app.post('/Homepage/PlayerParameter', (req, res) => {
-    const jsonUpdate = JSON.stringify(req.justUpdate, null, 2);
+    //const jsonUpdate = JSON.stringify(req.body.justUpdate, null, 2); // do this at front end
     console.log('Now wait for writting into db')
+    console.log(req.body) 
+    /*
+    async function main() {
+        await writeFile('../src/storage/tem.JSON', jsonUpdate);
+        console.info("file created successfully with promisify and async/await")
+    }
+    main().catch(error => console.error(error))
+    */
     return new Promise(function(resolve, reject) {
-        fs.writeFile('../src/storage/tem.JSON', jsonUpdate, (err) => {
+        fs.writeFile('../src/storage/tem.JSON', JSON.stringify(req.body, null, 2), (err) => {
             if (err) reject(err);
             else resolve('jsonUpdate')
         })
@@ -47,6 +55,7 @@ app.post('/Homepage/PlayerParameter', (req, res) => {
         console.log('update parameter Sueccessful!!')
     })
     .catch(err => {console.log('Fail because of ', err)})
+    
     /*
     async () => {
         await fs.writeFile('../src/storage/tem.JSON', jsonUpdate)

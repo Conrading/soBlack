@@ -134,7 +134,7 @@ export default {
             return;
           }
           let count = this.playerData.Rfj8polsG.length;
-          while (count--) {
+          while (count--) { //loop array stop if the filename is identical as button pressed
             if (this.playerData.Rfj8polsG[count].filename == this.filenameSetting) {
               //this.stStatus = this.playerData.Rfj8polsG[count].startPlay
               //this.svStatus = this.playerData.Rfj8polsG[count].volume
@@ -143,7 +143,7 @@ export default {
                   filename: this.filenameSetting,
                   volume: (this.soundVolume / 10)
                   }
-                http.post("/Homepage/PlayerParameter", {justUpdate})
+                http.post("/Homepage/PlayerParameter", JSON.stringify(justUpdate))
                 .then(this.settingWhich = "you have set volume to " + (this.soundVolume / 10))
                 .catch(err => {this.settingWhich = err;});  
               }
@@ -152,7 +152,7 @@ export default {
                   filename: this.filenameSetting,
                   startPlay: this.startTime
                   }
-                http.post("/Homepage/PlayerParameter", {justUpdate})
+                http.post("/Homepage/PlayerParameter", JSON.stringify(justUpdate))
                 .then(this.settingWhich = "you have set star time to " + this.startTime)
                 .catch(err => {this.settingWhich = err;});  
               }
@@ -162,7 +162,7 @@ export default {
                   startPlay: this.startTime, 
                   volume: (this.soundVolume / 10)
                   }
-                http.post("/Homepage/PlayerParameter", {justUpdate})
+                http.post("/Homepage/PlayerParameter", JSON.stringify(justUpdate))
                 .then(this.settingWhich = "you have set star time to " + this.startTime + " and volume to " + (this.soundVolume / 10))
                 .catch(err => {this.settingWhich = err;});  
               }
