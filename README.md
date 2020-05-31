@@ -205,4 +205,7 @@ $ npm install express-fileupload
 ```
 $ npm install aws-sdk
 ```
-
+#### Compiles 
+```
+$ npm run server
+```
